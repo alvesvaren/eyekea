@@ -1,0 +1,1188 @@
+{
+  "sites": [
+    {
+      "id": "dc-dortmund",
+      "name": "IKEA Distribution Centre Dortmund",
+      "type": "distribution",
+      "tier": 0,
+      "description": "Central warehouse supplying stores in western Germany.",
+      "location": {
+        "city": "Dortmund",
+        "state": "North Rhine-Westphalia",
+        "lat": 51.585,
+        "lng": 7.485
+      },
+      "workforce": {
+        "headcount": 1100,
+        "temporaryShare": 0.12,
+        "migrantShare": 0.28,
+        "womenShare": 0.31
+      },
+      "conditions": {
+        "avgWeeklyHours": 38.5,
+        "wageToLivingWage": 1.45,
+        "injuryRate": 2.1,
+        "unionRepresentation": true,
+        "grievanceMechanism": true
+      },
+      "audit": {
+        "status": "approved",
+        "lastAuditDate": "2026-02-12",
+        "openFindings": 0
+      },
+      "certifications": [
+        "ISO 45001"
+      ]
+    },
+    {
+      "id": "dc-salzgitter",
+      "name": "IKEA Distribution Centre Salzgitter",
+      "type": "distribution",
+      "tier": 0,
+      "description": "Central warehouse supplying stores in northern and eastern Germany.",
+      "location": {
+        "city": "Salzgitter",
+        "state": "Lower Saxony",
+        "lat": 52.152,
+        "lng": 10.33
+      },
+      "workforce": {
+        "headcount": 820,
+        "temporaryShare": 0.18,
+        "migrantShare": 0.22,
+        "womenShare": 0.27
+      },
+      "conditions": {
+        "avgWeeklyHours": 39.0,
+        "wageToLivingWage": 1.38,
+        "injuryRate": 2.6,
+        "unionRepresentation": true,
+        "grievanceMechanism": true
+      },
+      "audit": {
+        "status": "approved",
+        "lastAuditDate": "2025-11-03",
+        "openFindings": 1
+      },
+      "certifications": [
+        "ISO 45001"
+      ]
+    },
+    {
+      "id": "store-berlin",
+      "name": "IKEA Berlin-Lichtenberg",
+      "type": "store",
+      "tier": 0,
+      "description": "Store and pick-up point.",
+      "location": {
+        "city": "Berlin",
+        "state": "Berlin",
+        "lat": 52.524,
+        "lng": 13.494
+      },
+      "workforce": {
+        "headcount": 430,
+        "temporaryShare": 0.15,
+        "migrantShare": 0.35,
+        "womenShare": 0.52
+      },
+      "conditions": {
+        "avgWeeklyHours": 37.5,
+        "wageToLivingWage": 1.32,
+        "injuryRate": 1.1,
+        "unionRepresentation": true,
+        "grievanceMechanism": true
+      },
+      "audit": {
+        "status": "approved",
+        "lastAuditDate": "2026-01-20",
+        "openFindings": 0
+      },
+      "certifications": []
+    },
+    {
+      "id": "store-hamburg",
+      "name": "IKEA Hamburg-Altona",
+      "type": "store",
+      "tier": 0,
+      "description": "City-centre store.",
+      "location": {
+        "city": "Hamburg",
+        "state": "Hamburg",
+        "lat": 53.552,
+        "lng": 9.935
+      },
+      "workforce": {
+        "headcount": 310,
+        "temporaryShare": 0.14,
+        "migrantShare": 0.3,
+        "womenShare": 0.55
+      },
+      "conditions": {
+        "avgWeeklyHours": 37.5,
+        "wageToLivingWage": 1.3,
+        "injuryRate": 0.9,
+        "unionRepresentation": true,
+        "grievanceMechanism": true
+      },
+      "audit": {
+        "status": "approved",
+        "lastAuditDate": "2025-09-15",
+        "openFindings": 0
+      },
+      "certifications": []
+    },
+    {
+      "id": "store-cologne",
+      "name": "IKEA Köln-Godorf",
+      "type": "store",
+      "tier": 0,
+      "description": "Store and pick-up point.",
+      "location": {
+        "city": "Cologne",
+        "state": "North Rhine-Westphalia",
+        "lat": 50.855,
+        "lng": 6.982
+      },
+      "workforce": {
+        "headcount": 380,
+        "temporaryShare": 0.16,
+        "migrantShare": 0.27,
+        "womenShare": 0.5
+      },
+      "conditions": {
+        "avgWeeklyHours": 37.5,
+        "wageToLivingWage": 1.34,
+        "injuryRate": 1.3,
+        "unionRepresentation": true,
+        "grievanceMechanism": true
+      },
+      "audit": {
+        "status": "approved",
+        "lastAuditDate": "2026-04-02",
+        "openFindings": 0
+      },
+      "certifications": []
+    },
+    {
+      "id": "store-munich",
+      "name": "IKEA München-Eching",
+      "type": "store",
+      "tier": 0,
+      "description": "Store and pick-up point.",
+      "location": {
+        "city": "Eching",
+        "state": "Bavaria",
+        "lat": 48.3,
+        "lng": 11.618
+      },
+      "workforce": {
+        "headcount": 450,
+        "temporaryShare": 0.13,
+        "migrantShare": 0.25,
+        "womenShare": 0.49
+      },
+      "conditions": {
+        "avgWeeklyHours": 37.5,
+        "wageToLivingWage": 1.28,
+        "injuryRate": 1.0,
+        "unionRepresentation": true,
+        "grievanceMechanism": true
+      },
+      "audit": {
+        "status": "approved",
+        "lastAuditDate": "2025-12-08",
+        "openFindings": 0
+      },
+      "certifications": []
+    },
+    {
+      "id": "store-frankfurt",
+      "name": "IKEA Frankfurt",
+      "type": "store",
+      "tier": 0,
+      "description": "Store and pick-up point.",
+      "location": {
+        "city": "Frankfurt am Main",
+        "state": "Hesse",
+        "lat": 50.096,
+        "lng": 8.63
+      },
+      "workforce": {
+        "headcount": 360,
+        "temporaryShare": 0.17,
+        "migrantShare": 0.33,
+        "womenShare": 0.51
+      },
+      "conditions": {
+        "avgWeeklyHours": 37.5,
+        "wageToLivingWage": 1.31,
+        "injuryRate": 1.2,
+        "unionRepresentation": true,
+        "grievanceMechanism": true
+      },
+      "audit": {
+        "status": "approved",
+        "lastAuditDate": "2026-03-11",
+        "openFindings": 0
+      },
+      "certifications": []
+    },
+    {
+      "id": "mfg-lausitz",
+      "name": "Lausitzer Möbelwerk GmbH",
+      "type": "manufacturer",
+      "tier": 1,
+      "description": "Flat-pack shelving and storage made from particleboard.",
+      "location": {
+        "city": "Cottbus",
+        "state": "Brandenburg",
+        "lat": 51.756,
+        "lng": 14.333
+      },
+      "workforce": {
+        "headcount": 640,
+        "temporaryShare": 0.24,
+        "migrantShare": 0.31,
+        "womenShare": 0.38
+      },
+      "conditions": {
+        "avgWeeklyHours": 41.0,
+        "wageToLivingWage": 1.12,
+        "injuryRate": 3.1,
+        "unionRepresentation": true,
+        "grievanceMechanism": true
+      },
+      "audit": {
+        "status": "approved",
+        "lastAuditDate": "2025-06-19",
+        "openFindings": 2
+      },
+      "certifications": [
+        "FSC Chain of Custody",
+        "IWAY"
+      ]
+    },
+    {
+      "id": "mfg-coburg",
+      "name": "Oberfränkische Polstermöbel AG",
+      "type": "manufacturer",
+      "tier": 1,
+      "description": "Upholstered sofas and armchairs.",
+      "location": {
+        "city": "Coburg",
+        "state": "Bavaria",
+        "lat": 50.259,
+        "lng": 10.964
+      },
+      "workforce": {
+        "headcount": 520,
+        "temporaryShare": 0.33,
+        "migrantShare": 0.44,
+        "womenShare": 0.47
+      },
+      "conditions": {
+        "avgWeeklyHours": 44.5,
+        "wageToLivingWage": 1.04,
+        "injuryRate": 4.2,
+        "unionRepresentation": false,
+        "grievanceMechanism": true
+      },
+      "audit": {
+        "status": "conditional",
+        "lastAuditDate": "2025-02-27",
+        "openFindings": 4
+      },
+      "certifications": [
+        "IWAY"
+      ]
+    },
+    {
+      "id": "mfg-loehne",
+      "name": "Ostwestfalen Küchenbau GmbH",
+      "type": "manufacturer",
+      "tier": 1,
+      "description": "Kitchen cabinet fronts and carcasses.",
+      "location": {
+        "city": "Löhne",
+        "state": "North Rhine-Westphalia",
+        "lat": 52.196,
+        "lng": 8.708
+      },
+      "workforce": {
+        "headcount": 910,
+        "temporaryShare": 0.11,
+        "migrantShare": 0.21,
+        "womenShare": 0.29
+      },
+      "conditions": {
+        "avgWeeklyHours": 39.0,
+        "wageToLivingWage": 1.36,
+        "injuryRate": 2.4,
+        "unionRepresentation": true,
+        "grievanceMechanism": true
+      },
+      "audit": {
+        "status": "approved",
+        "lastAuditDate": "2026-05-06",
+        "openFindings": 0
+      },
+      "certifications": [
+        "FSC Chain of Custody",
+        "IWAY",
+        "ISO 45001"
+      ]
+    },
+    {
+      "id": "mfg-erzgebirge",
+      "name": "Erzgebirge Holzwaren KG",
+      "type": "manufacturer",
+      "tier": 1,
+      "description": "Small solid-wood items: stools, trays and children's furniture.",
+      "location": {
+        "city": "Annaberg-Buchholz",
+        "state": "Saxony",
+        "lat": 50.58,
+        "lng": 13.002
+      },
+      "workforce": {
+        "headcount": 140,
+        "temporaryShare": 0.18,
+        "migrantShare": 0.09,
+        "womenShare": 0.41
+      },
+      "conditions": {
+        "avgWeeklyHours": 40.0,
+        "wageToLivingWage": 1.08,
+        "injuryRate": 3.8,
+        "unionRepresentation": null,
+        "grievanceMechanism": true
+      },
+      "audit": {
+        "status": "approved",
+        "lastAuditDate": "2024-03-14",
+        "openFindings": 1
+      },
+      "certifications": [
+        "FSC Chain of Custody",
+        "IWAY"
+      ]
+    },
+    {
+      "id": "mfg-sauerland",
+      "name": "Sauerland Metallbau GmbH",
+      "type": "manufacturer",
+      "tier": 1,
+      "description": "Steel frames for beds and office chairs.",
+      "location": {
+        "city": "Arnsberg",
+        "state": "North Rhine-Westphalia",
+        "lat": 51.396,
+        "lng": 8.064
+      },
+      "workforce": {
+        "headcount": 380,
+        "temporaryShare": 0.21,
+        "migrantShare": 0.36,
+        "womenShare": 0.14
+      },
+      "conditions": {
+        "avgWeeklyHours": 42.5,
+        "wageToLivingWage": 1.15,
+        "injuryRate": 5.1,
+        "unionRepresentation": true,
+        "grievanceMechanism": null
+      },
+      "audit": {
+        "status": "approved",
+        "lastAuditDate": "2025-10-22",
+        "openFindings": 1
+      },
+      "certifications": [
+        "IWAY"
+      ]
+    },
+    {
+      "id": "mfg-freiburg",
+      "name": "Schwarzwald Leuchten GmbH",
+      "type": "manufacturer",
+      "tier": 1,
+      "description": "LED lamps and lighting assembly.",
+      "location": {
+        "city": "Freiburg im Breisgau",
+        "state": "Baden-Württemberg",
+        "lat": 47.999,
+        "lng": 7.842
+      },
+      "workforce": {
+        "headcount": 260,
+        "temporaryShare": null,
+        "migrantShare": null,
+        "womenShare": 0.58
+      },
+      "conditions": {
+        "avgWeeklyHours": 38.0,
+        "wageToLivingWage": 1.22,
+        "injuryRate": null,
+        "unionRepresentation": true,
+        "grievanceMechanism": true
+      },
+      "audit": {
+        "status": "approved",
+        "lastAuditDate": "2025-08-30",
+        "openFindings": 0
+      },
+      "certifications": [
+        "IWAY"
+      ]
+    },
+    {
+      "id": "cmp-wismar",
+      "name": "Mecklenburger Spanplatten GmbH",
+      "type": "materials",
+      "tier": 2,
+      "description": "Particleboard and MDF panels.",
+      "location": {
+        "city": "Wismar",
+        "state": "Mecklenburg-Western Pomerania",
+        "lat": 53.892,
+        "lng": 11.465
+      },
+      "workforce": {
+        "headcount": 450,
+        "temporaryShare": 0.27,
+        "migrantShare": 0.39,
+        "womenShare": 0.12
+      },
+      "conditions": {
+        "avgWeeklyHours": 45.5,
+        "wageToLivingWage": 1.06,
+        "injuryRate": 4.9,
+        "unionRepresentation": true,
+        "grievanceMechanism": false
+      },
+      "audit": {
+        "status": "conditional",
+        "lastAuditDate": "2024-11-12",
+        "openFindings": 3
+      },
+      "certifications": [
+        "FSC Chain of Custody"
+      ]
+    },
+    {
+      "id": "cmp-erfurt",
+      "name": "Thüringer Schaumstoff GmbH",
+      "type": "materials",
+      "tier": 2,
+      "description": "Polyurethane foam for cushions and mattresses.",
+      "location": {
+        "city": "Erfurt",
+        "state": "Thuringia",
+        "lat": 50.978,
+        "lng": 11.029
+      },
+      "workforce": {
+        "headcount": 190,
+        "temporaryShare": 0.38,
+        "migrantShare": 0.52,
+        "womenShare": 0.35
+      },
+      "conditions": {
+        "avgWeeklyHours": 47.0,
+        "wageToLivingWage": 0.97,
+        "injuryRate": 6.4,
+        "unionRepresentation": false,
+        "grievanceMechanism": false
+      },
+      "audit": {
+        "status": "failed",
+        "lastAuditDate": "2025-04-08",
+        "openFindings": 7
+      },
+      "certifications": []
+    },
+    {
+      "id": "cmp-bocholt",
+      "name": "Westfälische Textilveredelung GmbH",
+      "type": "materials",
+      "tier": 2,
+      "description": "Dyeing and finishing of upholstery fabric.",
+      "location": {
+        "city": "Bocholt",
+        "state": "North Rhine-Westphalia",
+        "lat": 51.838,
+        "lng": 6.616
+      },
+      "workforce": {
+        "headcount": 230,
+        "temporaryShare": 0.29,
+        "migrantShare": null,
+        "womenShare": 0.61
+      },
+      "conditions": {
+        "avgWeeklyHours": null,
+        "wageToLivingWage": null,
+        "injuryRate": 2.9,
+        "unionRepresentation": true,
+        "grievanceMechanism": null
+      },
+      "audit": {
+        "status": "not-audited",
+        "lastAuditDate": null,
+        "openFindings": null
+      },
+      "certifications": [
+        "OEKO-TEX Standard 100"
+      ]
+    },
+    {
+      "id": "cmp-remscheid",
+      "name": "Bergische Beschläge GmbH",
+      "type": "components",
+      "tier": 2,
+      "description": "Hinges, drawer runners and fittings.",
+      "location": {
+        "city": "Remscheid",
+        "state": "North Rhine-Westphalia",
+        "lat": 51.179,
+        "lng": 7.189
+      },
+      "workforce": {
+        "headcount": 310,
+        "temporaryShare": 0.14,
+        "migrantShare": 0.26,
+        "womenShare": 0.22
+      },
+      "conditions": {
+        "avgWeeklyHours": 39.5,
+        "wageToLivingWage": 1.27,
+        "injuryRate": 2.2,
+        "unionRepresentation": true,
+        "grievanceMechanism": true
+      },
+      "audit": {
+        "status": "approved",
+        "lastAuditDate": "2025-09-09",
+        "openFindings": 0
+      },
+      "certifications": [
+        "ISO 45001"
+      ]
+    },
+    {
+      "id": "cmp-solingen",
+      "name": "Rheinland Lackfabrik GmbH",
+      "type": "materials",
+      "tier": 2,
+      "description": "Water-based lacquers and wood stains.",
+      "location": {
+        "city": "Solingen",
+        "state": "North Rhine-Westphalia",
+        "lat": 51.171,
+        "lng": 7.083
+      },
+      "workforce": {
+        "headcount": 120,
+        "temporaryShare": 0.1,
+        "migrantShare": 0.18,
+        "womenShare": 0.3
+      },
+      "conditions": {
+        "avgWeeklyHours": 38.0,
+        "wageToLivingWage": 1.33,
+        "injuryRate": 1.8,
+        "unionRepresentation": true,
+        "grievanceMechanism": true
+      },
+      "audit": {
+        "status": "approved",
+        "lastAuditDate": "2026-01-28",
+        "openFindings": 0
+      },
+      "certifications": []
+    },
+    {
+      "id": "cmp-duisburg",
+      "name": "Ruhr Stahlservice GmbH",
+      "type": "materials",
+      "tier": 2,
+      "description": "Steel tube and sheet cutting.",
+      "location": {
+        "city": "Duisburg",
+        "state": "North Rhine-Westphalia",
+        "lat": 51.435,
+        "lng": 6.762
+      },
+      "workforce": {
+        "headcount": 270,
+        "temporaryShare": 0.22,
+        "migrantShare": 0.41,
+        "womenShare": 0.08
+      },
+      "conditions": {
+        "avgWeeklyHours": 43.0,
+        "wageToLivingWage": 1.19,
+        "injuryRate": 4.4,
+        "unionRepresentation": true,
+        "grievanceMechanism": true
+      },
+      "audit": {
+        "status": "approved",
+        "lastAuditDate": "2025-07-01",
+        "openFindings": 2
+      },
+      "certifications": [
+        "ISO 45001"
+      ]
+    },
+    {
+      "id": "cmp-kempten",
+      "name": "Allgäuer Glaswerk GmbH",
+      "type": "components",
+      "tier": 2,
+      "description": "Glass shades and diffusers.",
+      "location": {
+        "city": "Kempten",
+        "state": "Bavaria",
+        "lat": 47.726,
+        "lng": 10.315
+      },
+      "workforce": {
+        "headcount": null,
+        "temporaryShare": null,
+        "migrantShare": null,
+        "womenShare": null
+      },
+      "conditions": {
+        "avgWeeklyHours": null,
+        "wageToLivingWage": null,
+        "injuryRate": null,
+        "unionRepresentation": null,
+        "grievanceMechanism": null
+      },
+      "audit": {
+        "status": "not-audited",
+        "lastAuditDate": null,
+        "openFindings": null
+      },
+      "certifications": []
+    },
+    {
+      "id": "cmp-saalfeld",
+      "name": "Saalfelder Verpackungen GmbH",
+      "type": "components",
+      "tier": 2,
+      "description": "Corrugated cardboard packaging.",
+      "location": {
+        "city": "Saalfeld",
+        "state": "Thuringia",
+        "lat": 50.648,
+        "lng": 11.364
+      },
+      "workforce": {
+        "headcount": 160,
+        "temporaryShare": 0.31,
+        "migrantShare": 0.47,
+        "womenShare": 0.44
+      },
+      "conditions": {
+        "avgWeeklyHours": 42.0,
+        "wageToLivingWage": 1.09,
+        "injuryRate": 3.2,
+        "unionRepresentation": false,
+        "grievanceMechanism": true
+      },
+      "audit": {
+        "status": "approved",
+        "lastAuditDate": "2024-08-20",
+        "openFindings": 1
+      },
+      "certifications": [
+        "FSC Chain of Custody"
+      ]
+    },
+    {
+      "id": "saw-torgelow",
+      "name": "Sägewerk Vorpommern GmbH",
+      "type": "sawmill",
+      "tier": 3,
+      "description": "Pine sawmill producing chips and offcuts for board production.",
+      "location": {
+        "city": "Torgelow",
+        "state": "Mecklenburg-Western Pomerania",
+        "lat": 53.633,
+        "lng": 14.007
+      },
+      "workforce": {
+        "headcount": 95,
+        "temporaryShare": 0.35,
+        "migrantShare": 0.58,
+        "womenShare": 0.06
+      },
+      "conditions": {
+        "avgWeeklyHours": 49.5,
+        "wageToLivingWage": 0.98,
+        "injuryRate": 7.3,
+        "unionRepresentation": false,
+        "grievanceMechanism": false
+      },
+      "audit": {
+        "status": "not-audited",
+        "lastAuditDate": null,
+        "openFindings": null
+      },
+      "certifications": [
+        "FSC Chain of Custody"
+      ]
+    },
+    {
+      "id": "saw-harz",
+      "name": "Harzer Holzindustrie GmbH",
+      "type": "sawmill",
+      "tier": 2,
+      "description": "Spruce sawmill, rebuilding supply after bark beetle damage.",
+      "location": {
+        "city": "Goslar",
+        "state": "Lower Saxony",
+        "lat": 51.906,
+        "lng": 10.429
+      },
+      "workforce": {
+        "headcount": 120,
+        "temporaryShare": 0.22,
+        "migrantShare": null,
+        "womenShare": 0.09
+      },
+      "conditions": {
+        "avgWeeklyHours": 44.0,
+        "wageToLivingWage": 1.07,
+        "injuryRate": null,
+        "unionRepresentation": true,
+        "grievanceMechanism": null
+      },
+      "audit": {
+        "status": "approved",
+        "lastAuditDate": "2023-10-05",
+        "openFindings": 2
+      },
+      "certifications": [
+        "PEFC Chain of Custody"
+      ]
+    },
+    {
+      "id": "saw-regen",
+      "name": "Bayerwald Sägewerk KG",
+      "type": "sawmill",
+      "tier": 2,
+      "description": "Spruce and beech sawmill.",
+      "location": {
+        "city": "Regen",
+        "state": "Bavaria",
+        "lat": 48.97,
+        "lng": 13.128
+      },
+      "workforce": {
+        "headcount": 80,
+        "temporaryShare": 0.19,
+        "migrantShare": 0.4,
+        "womenShare": 0.1
+      },
+      "conditions": {
+        "avgWeeklyHours": 45.0,
+        "wageToLivingWage": 1.11,
+        "injuryRate": 5.6,
+        "unionRepresentation": null,
+        "grievanceMechanism": true
+      },
+      "audit": {
+        "status": "approved",
+        "lastAuditDate": "2025-05-15",
+        "openFindings": 1
+      },
+      "certifications": [
+        "PEFC Chain of Custody"
+      ]
+    },
+    {
+      "id": "saw-ilmenau",
+      "name": "Thüringer Wald Holz GmbH",
+      "type": "sawmill",
+      "tier": 2,
+      "description": "Spruce sawmill and kiln drying.",
+      "location": {
+        "city": "Ilmenau",
+        "state": "Thuringia",
+        "lat": 50.684,
+        "lng": 10.919
+      },
+      "workforce": {
+        "headcount": null,
+        "temporaryShare": null,
+        "migrantShare": null,
+        "womenShare": null
+      },
+      "conditions": {
+        "avgWeeklyHours": null,
+        "wageToLivingWage": null,
+        "injuryRate": null,
+        "unionRepresentation": null,
+        "grievanceMechanism": null
+      },
+      "audit": {
+        "status": "not-audited",
+        "lastAuditDate": null,
+        "openFindings": null
+      },
+      "certifications": []
+    },
+    {
+      "id": "for-vorpommern",
+      "name": "Forstbetrieb Ueckermünder Heide",
+      "type": "forestry",
+      "tier": 4,
+      "description": "Pine forest management.",
+      "location": {
+        "city": "Ueckermünde",
+        "state": "Mecklenburg-Western Pomerania",
+        "lat": 53.735,
+        "lng": 14.045
+      },
+      "workforce": {
+        "headcount": 35,
+        "temporaryShare": 0.2,
+        "migrantShare": 0.1,
+        "womenShare": 0.14
+      },
+      "conditions": {
+        "avgWeeklyHours": 41.0,
+        "wageToLivingWage": 1.18,
+        "injuryRate": 3.9,
+        "unionRepresentation": true,
+        "grievanceMechanism": true
+      },
+      "audit": {
+        "status": "approved",
+        "lastAuditDate": "2025-03-03",
+        "openFindings": 0
+      },
+      "certifications": [
+        "FSC Forest Management"
+      ]
+    },
+    {
+      "id": "for-harvest-ost",
+      "name": "Holzernte Service Ost GmbH",
+      "type": "forestry",
+      "tier": 4,
+      "description": "Logging contractor using seasonal and posted workers.",
+      "location": {
+        "city": "Pasewalk",
+        "state": "Mecklenburg-Western Pomerania",
+        "lat": 53.505,
+        "lng": 13.99
+      },
+      "workforce": {
+        "headcount": null,
+        "temporaryShare": null,
+        "migrantShare": null,
+        "womenShare": null
+      },
+      "conditions": {
+        "avgWeeklyHours": null,
+        "wageToLivingWage": null,
+        "injuryRate": null,
+        "unionRepresentation": null,
+        "grievanceMechanism": null
+      },
+      "audit": {
+        "status": "not-audited",
+        "lastAuditDate": null,
+        "openFindings": null
+      },
+      "certifications": []
+    },
+    {
+      "id": "for-harz",
+      "name": "Forstgenossenschaft Oberharz",
+      "type": "forestry",
+      "tier": 3,
+      "description": "Cooperative of private forest owners.",
+      "location": {
+        "city": "Clausthal-Zellerfeld",
+        "state": "Lower Saxony",
+        "lat": 51.805,
+        "lng": 10.336
+      },
+      "workforce": {
+        "headcount": 60,
+        "temporaryShare": null,
+        "migrantShare": null,
+        "womenShare": null
+      },
+      "conditions": {
+        "avgWeeklyHours": null,
+        "wageToLivingWage": null,
+        "injuryRate": 4.8,
+        "unionRepresentation": null,
+        "grievanceMechanism": null
+      },
+      "audit": {
+        "status": "not-audited",
+        "lastAuditDate": null,
+        "openFindings": null
+      },
+      "certifications": [
+        "PEFC Forest Management"
+      ]
+    },
+    {
+      "id": "for-bayerwald",
+      "name": "Forstbetrieb Bayerischer Wald",
+      "type": "forestry",
+      "tier": 3,
+      "description": "State-run forest enterprise.",
+      "location": {
+        "city": "Zwiesel",
+        "state": "Bavaria",
+        "lat": 49.017,
+        "lng": 13.236
+      },
+      "workforce": {
+        "headcount": 85,
+        "temporaryShare": 0.12,
+        "migrantShare": 0.05,
+        "womenShare": 0.18
+      },
+      "conditions": {
+        "avgWeeklyHours": 40.0,
+        "wageToLivingWage": 1.29,
+        "injuryRate": 4.1,
+        "unionRepresentation": true,
+        "grievanceMechanism": true
+      },
+      "audit": {
+        "status": "approved",
+        "lastAuditDate": "2025-09-25",
+        "openFindings": 0
+      },
+      "certifications": [
+        "PEFC Forest Management"
+      ]
+    },
+    {
+      "id": "for-thueringen",
+      "name": "Waldbauernverband Thüringer Wald",
+      "type": "forestry",
+      "tier": 3,
+      "description": "Association of small forest owners, mostly part-time.",
+      "location": {
+        "city": "Suhl",
+        "state": "Thuringia",
+        "lat": 50.609,
+        "lng": 10.693
+      },
+      "workforce": {
+        "headcount": null,
+        "temporaryShare": null,
+        "migrantShare": null,
+        "womenShare": null
+      },
+      "conditions": {
+        "avgWeeklyHours": null,
+        "wageToLivingWage": null,
+        "injuryRate": null,
+        "unionRepresentation": null,
+        "grievanceMechanism": null
+      },
+      "audit": {
+        "status": "not-audited",
+        "lastAuditDate": null,
+        "openFindings": null
+      },
+      "certifications": []
+    }
+  ],
+  "links": [
+    {
+      "from": "dc-dortmund",
+      "to": "store-cologne",
+      "material": "Finished goods"
+    },
+    {
+      "from": "dc-dortmund",
+      "to": "store-frankfurt",
+      "material": "Finished goods"
+    },
+    {
+      "from": "dc-salzgitter",
+      "to": "store-berlin",
+      "material": "Finished goods"
+    },
+    {
+      "from": "dc-salzgitter",
+      "to": "store-hamburg",
+      "material": "Finished goods"
+    },
+    {
+      "from": "dc-salzgitter",
+      "to": "store-munich",
+      "material": "Finished goods"
+    },
+    {
+      "from": "dc-dortmund",
+      "to": "store-munich",
+      "material": "Finished goods"
+    },
+    {
+      "from": "mfg-lausitz",
+      "to": "dc-salzgitter",
+      "material": "Shelving units"
+    },
+    {
+      "from": "mfg-coburg",
+      "to": "dc-salzgitter",
+      "material": "Sofas"
+    },
+    {
+      "from": "mfg-coburg",
+      "to": "dc-dortmund",
+      "material": "Sofas"
+    },
+    {
+      "from": "mfg-loehne",
+      "to": "dc-dortmund",
+      "material": "Kitchen cabinets"
+    },
+    {
+      "from": "mfg-erzgebirge",
+      "to": "dc-salzgitter",
+      "material": "Stools and trays"
+    },
+    {
+      "from": "mfg-sauerland",
+      "to": "dc-dortmund",
+      "material": "Bed frames"
+    },
+    {
+      "from": "mfg-freiburg",
+      "to": "dc-dortmund",
+      "material": "Lamps"
+    },
+    {
+      "from": "cmp-wismar",
+      "to": "mfg-lausitz",
+      "material": "Particleboard"
+    },
+    {
+      "from": "cmp-wismar",
+      "to": "mfg-loehne",
+      "material": "MDF panels"
+    },
+    {
+      "from": "cmp-erfurt",
+      "to": "mfg-coburg",
+      "material": "Foam"
+    },
+    {
+      "from": "cmp-bocholt",
+      "to": "mfg-coburg",
+      "material": "Upholstery fabric"
+    },
+    {
+      "from": "cmp-remscheid",
+      "to": "mfg-loehne",
+      "material": "Hinges and runners"
+    },
+    {
+      "from": "cmp-remscheid",
+      "to": "mfg-lausitz",
+      "material": "Fittings"
+    },
+    {
+      "from": "cmp-solingen",
+      "to": "mfg-loehne",
+      "material": "Lacquer"
+    },
+    {
+      "from": "cmp-solingen",
+      "to": "mfg-erzgebirge",
+      "material": "Wood stain"
+    },
+    {
+      "from": "cmp-duisburg",
+      "to": "mfg-sauerland",
+      "material": "Steel tube"
+    },
+    {
+      "from": "cmp-kempten",
+      "to": "mfg-freiburg",
+      "material": "Glass shades"
+    },
+    {
+      "from": "cmp-saalfeld",
+      "to": "mfg-lausitz",
+      "material": "Packaging"
+    },
+    {
+      "from": "cmp-saalfeld",
+      "to": "mfg-coburg",
+      "material": "Packaging"
+    },
+    {
+      "from": "saw-torgelow",
+      "to": "cmp-wismar",
+      "material": "Wood chips"
+    },
+    {
+      "from": "saw-harz",
+      "to": "cmp-wismar",
+      "material": "Offcuts"
+    },
+    {
+      "from": "saw-harz",
+      "to": "mfg-coburg",
+      "material": "Frame timber"
+    },
+    {
+      "from": "saw-regen",
+      "to": "mfg-erzgebirge",
+      "material": "Beech boards"
+    },
+    {
+      "from": "saw-ilmenau",
+      "to": "cmp-saalfeld",
+      "material": "Wood pulp"
+    },
+    {
+      "from": "saw-ilmenau",
+      "to": "mfg-erzgebirge",
+      "material": "Spruce boards"
+    },
+    {
+      "from": "for-vorpommern",
+      "to": "saw-torgelow",
+      "material": "Pine logs"
+    },
+    {
+      "from": "for-harvest-ost",
+      "to": "saw-torgelow",
+      "material": "Harvesting services"
+    },
+    {
+      "from": "for-harz",
+      "to": "saw-harz",
+      "material": "Spruce logs"
+    },
+    {
+      "from": "for-bayerwald",
+      "to": "saw-regen",
+      "material": "Beech logs"
+    },
+    {
+      "from": "for-thueringen",
+      "to": "saw-ilmenau",
+      "material": "Spruce logs"
+    }
+  ]
+}

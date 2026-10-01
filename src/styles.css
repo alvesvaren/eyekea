@@ -1,0 +1,72 @@
+@import "tailwindcss";
+@import "@fontsource/noto-sans/400.css";
+@import "@fontsource/noto-sans/700.css";
+@import "maplibre-gl/dist/maplibre-gl.css";
+
+/*
+ * Design tokens copied from IKEA's Skapa design system (the CSS custom
+ * properties on ikea.com). Tailwind's default palette is removed so every
+ * colour in the app comes from this list. `static` emits every token as a CSS
+ * variable, so non-Tailwind code (the map) can read them. See /design.
+ */
+@theme static {
+  --color-*: initial;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* Text and icons */
+  --color-ink: #111111;
+  --color-ink-subtle: #484848;
+  --color-ink-muted: #767676;
+  --color-ink-disabled: #929292;
+  --color-ink-inverse: #ffffff;
+
+  /* Surfaces and lines */
+  --color-surface: #ffffff;
+  --color-surface-subtle: #f5f5f5;
+  --color-surface-pressed: #dfdfdf;
+  --color-line: #dfdfdf;
+  --color-line-strong: #929292;
+  --color-disabled: #cccccc;
+
+  /* Interactive */
+  --color-primary: #111111;
+  --color-primary-hover: #333333;
+  --color-primary-pressed: #000000;
+  --color-emphasised: #0058a3;
+  --color-emphasised-hover: #004f93;
+  --color-emphasised-pressed: #003e72;
+  --color-destructive: #e00751;
+  --color-destructive-hover: #cc003d;
+  --color-destructive-pressed: #b80029;
+
+  /* Brand */
+  --color-brand-blue: #0058a3;
+  --color-brand-yellow: #ffdb00;
+  --color-sustainability: #37b886;
+
+  /* Semantic */
+  --color-positive: #0a8a00;
+  --color-caution: #f26a2e;
+  --color-caution-text: #ca5008;
+  --color-negative: #e00751;
+  --color-informative: #0058a3;
+
+  --font-sans: "Noto IKEA", "Noto Sans", system-ui, sans-serif;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-surface font-sans text-sm text-ink antialiased;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-emphasised;
+  }
+}
