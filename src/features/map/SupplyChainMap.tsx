@@ -1,9 +1,14 @@
 import { useNavigate } from "@tanstack/react-router";
+import { setWorkerUrl, type ExpressionSpecification, type Map as MapLibre } from "maplibre-gl";
+import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url";
 import type { FeatureCollection, LineString, Point } from "geojson";
 import { useState } from "react";
 import Map, { Layer, NavigationControl, Popup, Source, type MapLayerMouseEvent } from "react-map-gl/maplibre";
-import { STATUS_META, type SiteStatus } from "../../supply-chain/status";
+import { SITE_STATUSES, STATUS_META, type SiteStatus } from "../../supply-chain/status";
 import type { SupplyChainViewProps } from "../types";
+
+// maplibre-gl builds its worker URL at runtime, so Vite never emits the worker. Bundle it here instead.
+setWorkerUrl(workerUrl);
 
 /** Free vector tiles, no API key needed. */
 const MAP_STYLE = "https://tiles.openfreemap.org/styles/positron";
@@ -12,7 +17,9 @@ const GERMANY_BOUNDS: [[number, number], [number, number]] = [
   [15.04, 55.06],
 ];
 const SITES_LAYER = "sites";
+const STORES_LAYER = "stores";
 const DIMMED_OPACITY = 0.15;
+const IS_STORE: ExpressionSpecification = ["==", ["get", "type"], "store"];
 
 type Hovered = { name: string; lng: number; lat: number };
 
@@ -21,9 +28,43 @@ function cssVar(name: string) {
   return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 }
 
+/** Map image name for the IKEA logo outlined in a status colour. */
+const logoImage = (status: SiteStatus) => `ikea-logo-${status}`;
+
+/** Draws the IKEA logo, a yellow oval on blue, inside a border in the site's status colour. */
+function drawLogo(outline: string, pixelRatio: number) {
+  const width = 44 * pixelRatio;
+  const height = 24 * pixelRatio;
+  const border = 3 * pixelRatio;
+  const context = new OffscreenCanvas(width, height).getContext("2d");
+  if (!context) throw new Error("Canvas 2D is not available");
+
+  context.fillStyle = outline;
+  context.beginPath();
+  context.roundRect(0, 0, width, height, 4 * pixelRatio);
+  context.fill();
+
+  context.fillStyle = cssVar("--color-brand-blue");
+  context.fillRect(border, border, width - 2 * border, height - 2 * border);
+
+  context.fillStyle = cssVar("--color-brand-yellow");
+  context.beginPath();
+  context.ellipse(width / 2, height / 2, width / 2 - 2 * border, height / 2 - 1.5 * border, 0, 0, 2 * Math.PI);
+  context.fill();
+
+  context.fillStyle = cssVar("--color-brand-blue");
+  context.font = `bold ${9 * pixelRatio}px ${cssVar("--font-sans")}`;
+  context.textAlign = "center";
+  context.textBaseline = "middle";
+  context.fillText("IKEA", width / 2, height / 2 + 0.5 * pixelRatio);
+
+  return context.getImageData(0, 0, width, height);
+}
+
 export default function SupplyChainMap({ sites, links, visibleIds, selectedId }: SupplyChainViewProps) {
   const navigate = useNavigate();
   const [hovered, setHovered] = useState<Hovered>();
+  const [logosReady, setLogosReady] = useState(false);
 
   const byId = new globalThis.Map(sites.map((site) => [site.id, site]));
   const ink = cssVar("--color-ink");
@@ -32,12 +73,14 @@ export default function SupplyChainMap({ sites, links, visibleIds, selectedId }:
 
   const siteFeatures: FeatureCollection<Point> = {
     type: "FeatureCollection",
-    features: sites.map(({ id, name, location, assessment }) => ({
+    features: sites.map(({ id, name, type, location, assessment }) => ({
       type: "Feature",
       geometry: { type: "Point", coordinates: [location.lng, location.lat] },
       properties: {
         id,
         name,
+        type,
+        logo: logoImage(assessment.status),
         color: statusColor(assessment.status),
         opacity: visibleIds.has(id) ? 1 : DIMMED_OPACITY,
         selected: id === selectedId,
@@ -80,11 +123,21 @@ export default function SupplyChainMap({ sites, links, visibleIds, selectedId }:
     setHovered(typeof name === "string" ? { name, ...event.lngLat } : undefined);
   };
 
+  const addLogos = (map: MapLibre) => {
+    const pixelRatio = window.devicePixelRatio;
+    for (const status of SITE_STATUSES) {
+      const name = logoImage(status);
+      if (!map.hasImage(name)) map.addImage(name, drawLogo(statusColor(status), pixelRatio), { pixelRatio });
+    }
+    setLogosReady(true);
+  };
+
   return (
     <Map
       initialViewState={{ bounds: GERMANY_BOUNDS, fitBoundsOptions: { padding: 24 } }}
       mapStyle={MAP_STYLE}
-      interactiveLayerIds={[SITES_LAYER]}
+      interactiveLayerIds={[SITES_LAYER, STORES_LAYER]}
+      onLoad={(event) => addLogos(event.target)}
       cursor={hovered ? "pointer" : "grab"}
       onClick={handleClick}
       onMouseMove={handleHover}
@@ -108,6 +161,7 @@ export default function SupplyChainMap({ sites, links, visibleIds, selectedId }:
         <Layer
           id={SITES_LAYER}
           type="circle"
+          filter={["!", IS_STORE]}
           paint={{
             "circle-color": ["get", "color"],
             "circle-radius": ["case", ["get", "selected"], 10, 7],
@@ -117,6 +171,20 @@ export default function SupplyChainMap({ sites, links, visibleIds, selectedId }:
             "circle-stroke-opacity": ["get", "opacity"],
           }}
         />
+        {logosReady && (
+          <Layer
+            id={STORES_LAYER}
+            type="symbol"
+            filter={IS_STORE}
+            layout={{
+              "icon-image": ["get", "logo"],
+              "icon-size": ["case", ["get", "selected"], 1.3, 1],
+              "icon-allow-overlap": true,
+              "icon-ignore-placement": true,
+            }}
+            paint={{ "icon-opacity": ["get", "opacity"] }}
+          />
+        )}
       </Source>
 
       {hovered && (
