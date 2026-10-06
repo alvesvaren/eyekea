@@ -35,7 +35,6 @@ function fact<T>(label: string, value: T | null, format: (value: T) => ReactNode
 function SiteDetails() {
   const { site, suppliers, customers } = Route.useLoaderData();
   const { workforce, conditions, audit, assessment } = site;
-  const status = STATUS_META[assessment.status];
 
   const workforceFacts = [
     fact("Headcount", workforce.headcount, formatNumber),
@@ -74,8 +73,8 @@ function SiteDetails() {
 
       <Card>
         <div className="flex flex-wrap items-center justify-between gap-2">
-          <Status tone={status.tone}>
-            <span className="font-bold">{status.label}</span>
+          <Status tone={assessment.status}>
+            <span className="font-bold">{STATUS_META[assessment.status].label}</span>
           </Status>
           <span className="text-xs text-ink-subtle">{formatPercent(assessment.coverage)} of data reported</span>
         </div>
@@ -83,7 +82,7 @@ function SiteDetails() {
           <ul className="flex flex-col gap-1">
             {assessment.flags.map(({ severity, message }) => (
               <li key={message}>
-                <Status tone={STATUS_META[severity].tone}>{message}</Status>
+                <Status tone={severity}>{message}</Status>
               </li>
             ))}
           </ul>
@@ -115,7 +114,7 @@ function SiteDetails() {
         </section>
       </div>
 
-      <div className="grid gap-6 xl:grid-cols-2">
+      <div className="flex flex-col gap-6">
         <ConnectedSites title="Supplied by" connections={suppliers} empty="No known suppliers. The chain ends here." />
         <ConnectedSites title="Supplies to" connections={customers} empty="Sells directly to customers." />
       </div>
@@ -154,7 +153,7 @@ function ConnectedSites({ title, connections, empty }: { title: string; connecti
               params={{ siteId: site.id }}
               className="flex items-center justify-between gap-3 rounded px-2 py-1.5 hover:bg-surface-subtle"
             >
-              <Status tone={STATUS_META[site.assessment.status].tone}>
+              <Status tone={site.assessment.status}>
                 <span className="font-bold">{site.name}</span>
               </Status>
               <span className="shrink-0 text-xs text-ink-subtle">{material}</span>

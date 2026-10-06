@@ -47,10 +47,22 @@
 
   /* Semantic */
   --color-positive: #0a8a00;
-  --color-caution: #f26a2e;
+  --color-caution: #f26a2f;
   --color-caution-text: #ca5008;
   --color-negative: #e00751;
   --color-informative: #0058a3;
+
+  /*
+   * Risk scale for the map, graph, charts and status dots. Not Skapa: its
+   * semantic colours are too close in lightness to tell apart on a map or with
+   * colour blindness. Each level differs in lightness as well as hue, with high
+   * risk the darkest. Unknown is drawn as a hollow ring, never as a fill, so a
+   * site that did not report cannot pass for a risk level.
+   */
+  --color-risk-high: var(--color-negative);
+  --color-risk-medium: #ffb81c;
+  --color-risk-low: var(--color-sustainability);
+  --color-risk-unknown: var(--color-ink-muted);
 
   --font-sans: "Noto IKEA", "Noto Sans", system-ui, sans-serif;
 }

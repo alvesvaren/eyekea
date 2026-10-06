@@ -46,7 +46,7 @@ function Explorer() {
 
   return (
     <div className="flex min-w-0 flex-1">
-      <section className="flex w-1/2 min-w-0 flex-col gap-3 px-6 pt-2 pb-6">
+      <section className="flex w-2/3 min-w-0 flex-col px-6 pb-6">
         <TabList>
           {VIEW_OPTIONS.map((option) => (
             <Link
@@ -58,20 +58,19 @@ function Explorer() {
               {VIEWS[option]}
             </Link>
           ))}
+          <div className="ml-auto flex min-w-0 flex-wrap items-center justify-end gap-2 self-center pl-4">
+            {FOCUSES.map((option) => (
+              <Link
+                key={option}
+                to="."
+                search={(prev) => ({ ...prev, focus: option })}
+                className={pillVariants({ selected: focus === option })}
+              >
+                {FOCUS_OPTIONS[option].label}
+              </Link>
+            ))}
+          </div>
         </TabList>
-
-        <div className="flex flex-wrap gap-2">
-          {FOCUSES.map((option) => (
-            <Link
-              key={option}
-              to="."
-              search={(prev) => ({ ...prev, focus: option })}
-              className={pillVariants({ selected: focus === option })}
-            >
-              {FOCUS_OPTIONS[option].label}
-            </Link>
-          ))}
-        </div>
 
         <div className="relative min-h-0 flex-1 overflow-hidden rounded bg-surface-subtle">
           <Suspense fallback={<RoutePending />}>
@@ -79,16 +78,16 @@ function Explorer() {
           </Suspense>
         </div>
 
-        <ul className="flex flex-wrap gap-x-5 gap-y-1" aria-label="Legend">
+        <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-1" aria-label="Legend">
           {SITE_STATUSES.map((status) => (
             <li key={status}>
-              <Status tone={STATUS_META[status].tone}>{STATUS_META[status].label}</Status>
+              <Status tone={status}>{STATUS_META[status].label}</Status>
             </li>
           ))}
         </ul>
       </section>
 
-      <aside className="w-1/2 min-w-0 overflow-y-auto border-l border-line">
+      <aside className="w-1/3 min-w-0 overflow-y-auto border-l border-line">
         <Outlet />
       </aside>
     </div>

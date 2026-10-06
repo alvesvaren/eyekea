@@ -4,22 +4,26 @@ import type { ReactNode } from "react";
 const dotVariants = cva("inline-block size-2.5 shrink-0 rounded-full", {
   variants: {
     tone: {
-      positive: "bg-positive",
-      caution: "bg-caution",
-      negative: "bg-negative",
-      informative: "bg-informative",
-      neutral: "bg-line-strong",
+      high: "bg-risk-high",
+      medium: "bg-risk-medium",
+      low: "bg-risk-low",
+      unknown: "border-2 border-risk-unknown bg-surface",
     },
   },
 });
 
 export type StatusTone = NonNullable<VariantProps<typeof dotVariants>["tone"]>;
 
-/** Skapa status indicator: a coloured dot followed by a label. */
+/** Risk dot on its own, for places that draw their own label. */
+export function StatusDot({ tone }: { tone: StatusTone }) {
+  return <span className={dotVariants({ tone })} aria-hidden />;
+}
+
+/** Skapa status indicator: a dot in a risk colour followed by a label. */
 export function Status({ tone, children }: { tone: StatusTone; children: ReactNode }) {
   return (
     <span className="inline-flex items-center gap-2 text-sm">
-      <span className={dotVariants({ tone })} aria-hidden />
+      <StatusDot tone={tone} />
       {children}
     </span>
   );

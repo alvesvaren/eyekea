@@ -25,7 +25,7 @@ function Overview() {
     );
 
   return (
-    <div className="flex flex-col gap-6 p-6">
+    <div className="flex flex-col gap-6 py-6 *:mx-6">
       <header className="flex flex-col gap-1">
         <h1 className="text-2xl font-bold">Supply chain overview</h1>
         <p className="text-ink-subtle">
@@ -54,15 +54,15 @@ function Overview() {
         <StatusByTierChart sites={sites} />
       </Card>
 
-      <section className="flex flex-col gap-3">
-        <h2 className="text-lg font-bold">Needs review</h2>
+      <section className="flex flex-col gap-3 mx-0!">
+        <h2 className="text-lg font-bold px-6">Needs review</h2>
         <ul className="flex flex-col divide-y divide-line border-y border-line">
           {toReview.map(({ id, name, type, location, assessment }) => (
             <li key={id}>
               <Link
                 to="/sites/$siteId"
                 params={{ siteId: id }}
-                className="flex items-center justify-between gap-4 py-3 hover:bg-surface-subtle"
+                className="flex items-center justify-between gap-4 py-3 px-6 hover:bg-surface-subtle"
               >
                 <span className="flex min-w-0 flex-col">
                   <span className="truncate font-bold">{name}</span>
@@ -71,7 +71,7 @@ function Overview() {
                   </span>
                 </span>
                 <span className="flex shrink-0 flex-col items-end gap-1 text-xs">
-                  <Status tone={STATUS_META[assessment.status].tone}>{STATUS_META[assessment.status].label}</Status>
+                  <Status tone={assessment.status}>{STATUS_META[assessment.status].label}</Status>
                   <span className="text-ink-muted">{formatPercent(assessment.coverage)} data</span>
                 </span>
               </Link>

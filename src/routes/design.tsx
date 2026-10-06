@@ -7,6 +7,7 @@ import { Card, CardTitle, StatTile } from "../components/ui/Card";
 import { pillVariants } from "../components/ui/Pill";
 import { Status } from "../components/ui/Status";
 import { TabList, tabVariants } from "../components/ui/Tabs";
+import { SITE_STATUSES, STATUS_META } from "../supply-chain/status";
 
 /*
  * A living style guide: every UI component in every variant and state.
@@ -26,6 +27,7 @@ const COLOUR_GROUPS = {
   Interactive: ["primary", "primary-hover", "emphasised", "emphasised-hover", "destructive", "destructive-hover"],
   Brand: ["brand-blue", "brand-yellow", "sustainability"],
   Semantic: ["positive", "caution", "caution-text", "negative", "informative"],
+  Risk: ["risk-high", "risk-medium", "risk-low", "risk-unknown"],
 };
 
 const BUTTON_VARIANTS = ["primary", "emphasised", "secondary", "tertiary", "destructive"] as const;
@@ -39,8 +41,8 @@ function DesignSystem() {
         <header className="flex flex-col gap-2">
           <h1 className="text-3xl font-bold">Design system</h1>
           <p className="max-w-2xl text-ink-subtle">
-            Components styled after IKEA's Skapa design system. Colours are Skapa's tokens from ikea.com, defined in{" "}
-            <code>src/styles.css</code>. Hover and click the components to see their interactive states.
+            Components styled after IKEA's Skapa design system. Colours are Skapa's tokens from ikea.com, except the risk scale, and are
+            defined in <code>src/styles.css</code>. Hover and click the components to see their interactive states.
           </p>
         </header>
 
@@ -124,12 +126,16 @@ function DesignSystem() {
 
         <Section title="Status">
           <div className="flex flex-wrap gap-6">
-            <Status tone="positive">Positive</Status>
-            <Status tone="caution">Caution</Status>
-            <Status tone="negative">Negative</Status>
-            <Status tone="informative">Informative</Status>
-            <Status tone="neutral">Neutral</Status>
+            {SITE_STATUSES.map((status) => (
+              <Status key={status} tone={status}>
+                {STATUS_META[status].label}
+              </Status>
+            ))}
           </div>
+          <p className="text-xs text-ink-subtle">
+            Risk uses its own <code>risk-*</code> colours, not Skapa's semantic ones, so the levels stay apart on the map
+            and for colour-blind viewers. Not enough data is a hollow ring, so it never looks like a risk level.
+          </p>
         </Section>
 
         <Section title="Cards and stats">

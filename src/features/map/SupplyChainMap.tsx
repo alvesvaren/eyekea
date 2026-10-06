@@ -1,10 +1,10 @@
 import { useNavigate } from "@tanstack/react-router";
-import { setWorkerUrl, type ExpressionSpecification, type Map as MapLibre } from "maplibre-gl";
+import { MercatorCoordinate, setWorkerUrl, type ExpressionSpecification, type Map as MapLibre } from "maplibre-gl";
 import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url";
-import type { FeatureCollection, LineString, Point } from "geojson";
+import type { Feature, FeatureCollection, LineString, Point } from "geojson";
 import { useState } from "react";
 import Map, { Layer, NavigationControl, Popup, Source, type MapLayerMouseEvent } from "react-map-gl/maplibre";
-import { SITE_STATUSES, STATUS_META, type SiteStatus } from "../../supply-chain/status";
+import { SITE_STATUSES, type SiteStatus } from "../../supply-chain/status";
 import type { SupplyChainViewProps } from "../types";
 
 // maplibre-gl builds its worker URL at runtime, so Vite never emits the worker. Bundle it here instead.
@@ -20,12 +20,37 @@ const SITES_LAYER = "sites";
 const STORES_LAYER = "stores";
 const DIMMED_OPACITY = 0.15;
 const IS_STORE: ExpressionSpecification = ["==", ["get", "type"], "store"];
+/** Each link is drawn as this many pieces, each wider than the last, so it tapers toward the receiving site. */
+const TAPER_STEPS = 12;
 
-type Hovered = { name: string; lng: number; lat: number };
+type LngLat = { lng: number; lat: number };
+type Hovered = LngLat & { name: string };
 
 /** Theme tokens live in CSS. The map paints on a canvas, so it reads them as values. */
 function cssVar(name: string) {
   return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+}
+
+/**
+ * Splits a line into pieces with a `progress` property running from 0 at the supplier to 1 at the receiver.
+ * MapLibre cannot vary width along one line, so the layer widens each piece by its progress instead.
+ * Points are spaced in Mercator space so the pieces stay on the straight line the map draws.
+ */
+function taperedSegments(from: LngLat, to: LngLat, properties: Record<string, unknown>): Feature<LineString>[] {
+  const start = MercatorCoordinate.fromLngLat(from);
+  const end = MercatorCoordinate.fromLngLat(to);
+  const pointAt = (fraction: number) => {
+    const { lng, lat } = new MercatorCoordinate(
+      start.x + (end.x - start.x) * fraction,
+      start.y + (end.y - start.y) * fraction,
+    ).toLngLat();
+    return [lng, lat];
+  };
+  return Array.from({ length: TAPER_STEPS }, (_, step) => ({
+    type: "Feature",
+    geometry: { type: "LineString", coordinates: [pointAt(step / TAPER_STEPS), pointAt((step + 1) / TAPER_STEPS)] },
+    properties: { ...properties, progress: (step + 0.5) / TAPER_STEPS },
+  }));
 }
 
 /** Map image name for the IKEA logo outlined in a status colour. */
@@ -69,7 +94,11 @@ export default function SupplyChainMap({ sites, links, visibleIds, selectedId }:
   const byId = new globalThis.Map(sites.map((site) => [site.id, site]));
   const ink = cssVar("--color-ink");
   const lineColor = cssVar("--color-ink-muted");
-  const statusColor = (status: SiteStatus) => cssVar(STATUS_META[status].colorVar);
+  const surface = cssVar("--color-surface");
+  const statusColor = (status: SiteStatus) => cssVar(`--color-risk-${status}`);
+  // A white outline keeps fills crisp on the grey basemap. Unknown flips it into a hollow ring.
+  const pinPaint = (status: SiteStatus) =>
+    status === "unknown" ? { fill: surface, stroke: statusColor(status) } : { fill: statusColor(status), stroke: surface };
 
   const siteFeatures: FeatureCollection<Point> = {
     type: "FeatureCollection",
@@ -81,7 +110,7 @@ export default function SupplyChainMap({ sites, links, visibleIds, selectedId }:
         name,
         type,
         logo: logoImage(assessment.status),
-        color: statusColor(assessment.status),
+        ...pinPaint(assessment.status),
         opacity: visibleIds.has(id) ? 1 : DIMMED_OPACITY,
         selected: id === selectedId,
       },
@@ -94,20 +123,10 @@ export default function SupplyChainMap({ sites, links, visibleIds, selectedId }:
       const source = byId.get(from);
       const target = byId.get(to);
       if (!source || !target) return [];
-      return {
-        type: "Feature",
-        geometry: {
-          type: "LineString",
-          coordinates: [
-            [source.location.lng, source.location.lat],
-            [target.location.lng, target.location.lat],
-          ],
-        },
-        properties: {
-          opacity: visibleIds.has(from) && visibleIds.has(to) ? 0.6 : DIMMED_OPACITY,
-          selected: from === selectedId || to === selectedId,
-        },
-      };
+      return taperedSegments(source.location, target.location, {
+        opacity: visibleIds.has(from) && visibleIds.has(to) ? 0.6 : DIMMED_OPACITY,
+        selected: from === selectedId || to === selectedId,
+      });
     }),
   };
 
@@ -151,7 +170,13 @@ export default function SupplyChainMap({ sites, links, visibleIds, selectedId }:
           type="line"
           paint={{
             "line-color": ["case", ["get", "selected"], ink, lineColor],
-            "line-width": ["case", ["get", "selected"], 3, 1.5],
+            // Thin at the supplier, thick at the receiver: follow the thick end to reach IKEA.
+            "line-width": [
+              "case",
+              ["get", "selected"],
+              ["interpolate", ["linear"], ["get", "progress"], 0, 1.5, 1, 6],
+              ["interpolate", ["linear"], ["get", "progress"], 0, 0.5, 1, 4],
+            ],
             "line-opacity": ["get", "opacity"],
           }}
         />
@@ -163,10 +188,10 @@ export default function SupplyChainMap({ sites, links, visibleIds, selectedId }:
           type="circle"
           filter={["!", IS_STORE]}
           paint={{
-            "circle-color": ["get", "color"],
+            "circle-color": ["get", "fill"],
             "circle-radius": ["case", ["get", "selected"], 10, 7],
-            "circle-stroke-color": ink,
-            "circle-stroke-width": ["case", ["get", "selected"], 3, 1],
+            "circle-stroke-color": ["case", ["get", "selected"], ink, ["get", "stroke"]],
+            "circle-stroke-width": ["case", ["get", "selected"], 3, 2],
             "circle-opacity": ["get", "opacity"],
             "circle-stroke-opacity": ["get", "opacity"],
           }}
