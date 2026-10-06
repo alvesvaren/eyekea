@@ -15,7 +15,7 @@ const SEGMENT_CLASSES = {
 /** One stacked bar per tier showing how many sites are in each status, plus that tier's data coverage. */
 export function StatusByTierChart({ sites }: { sites: AssessedSite[] }) {
   const rows = [...Map.groupBy(sites, ({ tier }) => tier)]
-    .sort(([a], [b]) => b - a)
+    .sort(([a], [b]) => a - b)
     .map(([tier, tierSites]) => ({
       tier,
       total: tierSites.length,

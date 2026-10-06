@@ -45,8 +45,8 @@ function layout(sites: AssessedSite[]) {
 
 /** A horizontal S-curve between two points, in the same percentage coordinates as the nodes. */
 function curve(from: Position, to: Position) {
-  const midX = (from.x + to.x) / 2;
-  return `M ${from.x} ${from.y} C ${midX} ${from.y}, ${midX} ${to.y}, ${to.x} ${to.y}`;
+  const midX = ((100 - from.x) + (100 - to.x)) / 2;
+  return `M ${100 - from.x} ${from.y} C ${midX} ${from.y}, ${midX} ${to.y}, ${100 - to.x} ${to.y}`;
 }
 
 export default function SupplyChainGraph({ sites, links, visibleIds, selectedId }: SupplyChainViewProps) {
@@ -70,7 +70,7 @@ export default function SupplyChainGraph({ sites, links, visibleIds, selectedId 
         <span
           key={label}
           className="absolute top-3 -translate-x-1/2 text-xs font-bold text-ink-muted"
-          style={{ left: `${x}%` }}
+          style={{ left: `${100 - x}%` }}
         >
           {label}
         </span>
@@ -103,10 +103,13 @@ export default function SupplyChainGraph({ sites, links, visibleIds, selectedId 
               id === selectedId ? "z-10 border-ink ring-2 ring-ink" : "border-line",
               !visibleIds.has(id) && "opacity-25",
             )}
-            style={{ left: `${position.x}%`, top: `${position.y}%` }}
+            style={{ left: `${100 - position.x}%`, top: `${position.y}%` }}
           >
             <StatusFace tone={assessment.status} />
-            <span className="truncate">{name}</span>
+            <span className="truncate">{name.replace(" GmbH", "")
+              .split(" ")
+              .map(word => word.length > 4 ?
+                word.substring(0, 3) + "." : word).join(" ")}</span>
           </Link>
         );
       })}

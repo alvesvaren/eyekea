@@ -7,7 +7,7 @@ import type { Site } from "./schema";
  * Keeping them separate means a site cannot look healthy by not reporting.
  */
 
-export const RISK_LEVELS = ["high", "medium", "low"] as const;
+export const RISK_LEVELS = ["unknown", "high", "medium", "low"] as const;
 export type RiskLevel = (typeof RISK_LEVELS)[number];
 type Severity = Exclude<RiskLevel, "low">;
 
