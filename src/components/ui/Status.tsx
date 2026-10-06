@@ -11,15 +11,19 @@ const faceVariants = cva("size-4 shrink-0", {
       low: "fill-risk-low stroke-ink",
       unknown: "fill-surface stroke-risk-unknown",
     },
+    size: {
+      default: "scale-100",
+      large: "scale-140"
+    }
   },
 });
 
 export type StatusTone = SiteStatus;
 
 /** Risk face on its own, for places that draw their own label. */
-export function StatusFace({ tone }: { tone: StatusTone }) {
+export function StatusFace({ tone, size = "default" }: { tone: StatusTone, size?: "large" | "default" }) {
   return (
-    <svg viewBox={`0 0 ${FACE_SIZE} ${FACE_SIZE}`} className={faceVariants({ tone })} aria-hidden>
+    <svg viewBox={`0 0 ${FACE_SIZE} ${FACE_SIZE}`} className={faceVariants({ tone, size })} aria-hidden>
       <circle cx={FACE_CENTER} cy={FACE_CENTER} r={FACE_RADIUS} strokeWidth={isHollow(tone) ? FACE_STROKE : 0} />
       <path d={FACE_PATHS[tone]} fill="none" strokeWidth={FACE_STROKE} strokeLinecap="round" />
     </svg>
@@ -27,10 +31,10 @@ export function StatusFace({ tone }: { tone: StatusTone }) {
 }
 
 /** Skapa status indicator: a risk face followed by a label. */
-export function Status({ tone, children }: { tone: StatusTone; children: ReactNode }) {
+export function Status({ tone, size, children }: { tone: StatusTone; size?: Parameters<typeof StatusFace>[0]['size']; children: ReactNode }) {
   return (
     <span className="inline-flex items-center gap-2 text-sm">
-      <StatusFace tone={tone} />
+      <StatusFace size={size} tone={tone} />
       {children}
     </span>
   );

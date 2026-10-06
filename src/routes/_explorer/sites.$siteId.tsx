@@ -73,7 +73,7 @@ function SiteDetails() {
 
       <Card>
         <div className="flex flex-wrap items-center justify-between gap-2">
-          <Status tone={assessment.status}>
+          <Status size="large" tone={assessment.status}>
             <span className="font-bold">{STATUS_META[assessment.status].label}</span>
           </Status>
           <span className="text-xs text-ink-subtle">{formatPercent(assessment.coverage)} of data reported</span>

@@ -109,7 +109,8 @@ export default function SupplyChainGraph({ sites, links, visibleIds, selectedId 
             <span className="truncate">{name.replace(" GmbH", "")
               .split(" ")
               .map(word => word.length > 4 ?
-                word.substring(0, 3) + "." : word).join(" ")}</span>
+                word.substring(0, 3) + "." : word)
+              .join(" ")}</span>
           </Link>
         );
       })}
