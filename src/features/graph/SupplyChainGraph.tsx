@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { clsx } from "clsx";
 import type { AssessedSite } from "../../supply-chain/load";
-import { StatusDot } from "../../components/ui/Status";
+import { StatusFace } from "../../components/ui/Status";
 import type { SupplyChainViewProps } from "../types";
 
 /** Horizontal and vertical padding around the graph, in percent of the container. */
@@ -105,7 +105,7 @@ export default function SupplyChainGraph({ sites, links, visibleIds, selectedId 
             )}
             style={{ left: `${position.x}%`, top: `${position.y}%` }}
           >
-            <StatusDot tone={assessment.status} />
+            <StatusFace tone={assessment.status} />
             <span className="truncate">{name}</span>
           </Link>
         );

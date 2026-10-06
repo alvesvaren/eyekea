@@ -1,29 +1,36 @@
-import { cva, type VariantProps } from "class-variance-authority";
+import { cva } from "class-variance-authority";
 import type { ReactNode } from "react";
+import type { SiteStatus } from "../../supply-chain/status";
+import { FACE_CENTER, FACE_PATHS, FACE_RADIUS, FACE_SIZE, FACE_STROKE, isHollow } from "./statusFace";
 
-const dotVariants = cva("inline-block size-2.5 shrink-0 rounded-full", {
+const faceVariants = cva("size-4 shrink-0", {
   variants: {
     tone: {
-      high: "bg-risk-high",
-      medium: "bg-risk-medium",
-      low: "bg-risk-low",
-      unknown: "border-2 border-risk-unknown bg-surface",
+      high: "fill-risk-high stroke-ink",
+      medium: "fill-risk-medium stroke-ink",
+      low: "fill-risk-low stroke-ink",
+      unknown: "fill-surface stroke-risk-unknown",
     },
   },
 });
 
-export type StatusTone = NonNullable<VariantProps<typeof dotVariants>["tone"]>;
+export type StatusTone = SiteStatus;
 
-/** Risk dot on its own, for places that draw their own label. */
-export function StatusDot({ tone }: { tone: StatusTone }) {
-  return <span className={dotVariants({ tone })} aria-hidden />;
+/** Risk face on its own, for places that draw their own label. */
+export function StatusFace({ tone }: { tone: StatusTone }) {
+  return (
+    <svg viewBox={`0 0 ${FACE_SIZE} ${FACE_SIZE}`} className={faceVariants({ tone })} aria-hidden>
+      <circle cx={FACE_CENTER} cy={FACE_CENTER} r={FACE_RADIUS} strokeWidth={isHollow(tone) ? FACE_STROKE : 0} />
+      <path d={FACE_PATHS[tone]} fill="none" strokeWidth={FACE_STROKE} strokeLinecap="round" />
+    </svg>
+  );
 }
 
-/** Skapa status indicator: a dot in a risk colour followed by a label. */
+/** Skapa status indicator: a risk face followed by a label. */
 export function Status({ tone, children }: { tone: StatusTone; children: ReactNode }) {
   return (
     <span className="inline-flex items-center gap-2 text-sm">
-      <StatusDot tone={tone} />
+      <StatusFace tone={tone} />
       {children}
     </span>
   );

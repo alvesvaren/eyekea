@@ -10,12 +10,13 @@ Update this file when you start or finish something. Put your name next to items
 - [x] Mock data: 30 fictional sites and 36 links across Germany
 - [x] Risk assessment that keeps risk and missing data apart, with tests
 - [x] Map view with sites coloured by status and supply links
-- [x] Map links taper from thin at the supplier to thick at the receiver, so the thick end points toward tier 0
+- [x] Links of the selected site carry an arrowhead pointing from the supplier to the receiver, toward tier 0
 - [x] Graph view with sites in columns by tier
 - [x] Overview panel: key numbers, status by tier, and the list of sites that need review
 - [x] Site panel at `/sites/<id>`: flags, missing data, workforce, conditions, audit, and connected sites
 - [x] Focus filters (all, needs review, high risk, data gaps) in the URL
 - [x] Risk colour scale (`risk-*` tokens) that works for colour-blind viewers, with "not enough data" drawn as a hollow ring or hatched area
+- [x] Status faces (smile, flat, frown, question mark) on the map, graph, and legend, so risk reads without colour
 
 ## Next
 

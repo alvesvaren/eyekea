@@ -134,7 +134,8 @@ function DesignSystem() {
           </div>
           <p className="text-xs text-ink-subtle">
             Risk uses its own <code>risk-*</code> colours, not Skapa's semantic ones, so the levels stay apart on the map
-            and for colour-blind viewers. Not enough data is a hollow ring, so it never looks like a risk level.
+            and for colour-blind viewers. Each level also has its own face (smile, flat, frown), so it reads without colour.
+            Not enough data is a hollow ring with a question mark, so it never looks like a risk level.
           </p>
         </Section>
 
