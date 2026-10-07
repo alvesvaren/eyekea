@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ExplorerRouteImport } from './routes/_explorer'
 import { Route as DesignRouteImport } from './routes/design'
+import { Route as DocumentRouteImport } from './routes/document'
 import { Route as ExplorerIndexRouteImport } from './routes/_explorer/index'
 import { Route as ExplorerSitesSiteIdRouteImport } from './routes/_explorer/sites.$siteId'
 
@@ -21,6 +22,11 @@ const ExplorerRoute = ExplorerRouteImport.update({
 const DesignRoute = DesignRouteImport.update({
   id: '/design',
   path: '/design',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DocumentRoute = DocumentRouteImport.update({
+  id: '/document',
+  path: '/document',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ExplorerIndexRoute = ExplorerIndexRouteImport.update({
@@ -37,10 +43,12 @@ const ExplorerSitesSiteIdRoute = ExplorerSitesSiteIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof ExplorerIndexRoute
   '/design': typeof DesignRoute
+  '/document': typeof DocumentRoute
   '/sites/$siteId': typeof ExplorerSitesSiteIdRoute
 }
 export interface FileRoutesByTo {
   '/design': typeof DesignRoute
+  '/document': typeof DocumentRoute
   '/': typeof ExplorerIndexRoute
   '/sites/$siteId': typeof ExplorerSitesSiteIdRoute
 }
@@ -48,18 +56,20 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_explorer': typeof ExplorerRouteWithChildren
   '/design': typeof DesignRoute
+  '/document': typeof DocumentRoute
   '/_explorer/': typeof ExplorerIndexRoute
   '/_explorer/sites/$siteId': typeof ExplorerSitesSiteIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/design' | '/sites/$siteId'
+  fullPaths: '/' | '/design' | '/document' | '/sites/$siteId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/design' | '/' | '/sites/$siteId'
+  to: '/design' | '/document' | '/' | '/sites/$siteId'
   id:
     | '__root__'
     | '/_explorer'
     | '/design'
+    | '/document'
     | '/_explorer/'
     | '/_explorer/sites/$siteId'
   fileRoutesById: FileRoutesById
@@ -67,6 +77,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   ExplorerRoute: typeof ExplorerRouteWithChildren
   DesignRoute: typeof DesignRoute
+  DocumentRoute: typeof DocumentRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -83,6 +94,13 @@ declare module '@tanstack/react-router' {
       path: '/design'
       fullPath: '/design'
       preLoaderRoute: typeof DesignRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/document': {
+      id: '/document'
+      path: '/document'
+      fullPath: '/document'
+      preLoaderRoute: typeof DocumentRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_explorer/': {
@@ -119,6 +137,7 @@ const ExplorerRouteWithChildren = ExplorerRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   ExplorerRoute: ExplorerRouteWithChildren,
   DesignRoute: DesignRoute,
+  DocumentRoute: DocumentRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
