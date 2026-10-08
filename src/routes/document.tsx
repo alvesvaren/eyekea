@@ -10,13 +10,13 @@ export const Route = createFileRoute('/document')({
 })
 
 const team = [
-  { name: 'Alve Svarén', mail: 'mejl@gmail.com' },
+  { name: 'Alve Leuchovius Svarén', mail: 'alvel@chalmers.se' },
   { name: 'Tristan Harbander', mail: 'harbander.tristan@gmail.com' },
   { name: 'Leo Söderberg', mail: 'leoso@chalmers.se' },
-  { name: 'Vilmer Hahne Lundqvist', mail: 'vilmerha@chalmers.se'},
+  { name: 'Karl Vilmer Olav Hahne Lundqvist', mail: 'vilmerha@chalmers.se'},
   { name: 'Felix Andersson', mail: 'fluxlux@gmail.com'},
-  { name: 'Markus Rynnerr', mail: 'akdj@gmail.com'}
-];
+  { name: 'Markus Rynner', mail: 'markusry@chalmers.se'}
+] satisfies {name: string; mail:string}[];
 
 const SUSAF_EFFECTS: SusafEffect[] = [
   {
@@ -128,7 +128,7 @@ function Document() {
           <div className='grid grid-cols-3 space-y-4'>
             {Object.entries(team).map(([index, member]) => (
               <div key={index} className="flex flex-col">
-                <h3 className="text-xs font-bold text-ink-subtle">{member.name}</h3>
+                <h3 className="text-md font-bold text-ink-subtle">{member.name}</h3>
                 <MailToLink>{member.mail}</MailToLink>
               </div>
             ))}
