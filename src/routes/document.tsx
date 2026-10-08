@@ -14,7 +14,7 @@ const team = [
   { name: 'Alve Leuchovius Svarén', mail: 'alvel@chalmers.se' },
   { name: 'Tristan Harbander', mail: 'harbander.tristan@gmail.com' },
   { name: 'Leo Söderberg', mail: 'leoso@chalmers.se' },
-  { name: 'Karl Vilmer Olav Hahne Lundqvist', mail: 'vilmerha@chalmers.se' },
+  { name: 'Vilmer Hahne Lundqvist', mail: 'vilmerha@chalmers.se' },
   { name: 'Felix Andersson', mail: 'fluxlux@gmail.com' },
   { name: 'Markus Rynner', mail: 'markusry@chalmers.se' }
 ] satisfies { name: string; mail: string }[];
