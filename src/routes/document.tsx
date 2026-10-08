@@ -1,6 +1,7 @@
 import { Link, createFileRoute } from '@tanstack/react-router'
 import type { ReactNode } from "react";
 import { z } from "zod";
+import { Accordion, AccordionItem } from "../components/ui/Accordion";
 import { buttonVariants } from "../components/ui/Button";
 import { SusafDiagram, SusafEffectDetails, type SusafEffect } from "../components/ui/SusafDiagram";
 
@@ -93,6 +94,36 @@ const SUSAF_EFFECTS: SusafEffect[] = [
     order: "structural",
     label: "Fewer site visits and less travel",
     description: "Targeted audits replace routine visits to low-risk sites, cutting travel and its emissions.",
+  },
+];
+
+const SCAFFOLDING_STEPS = [
+  {
+    title: "What we asked for",
+    points: [
+      <>
+        We used Alve's existing{" "}
+        <a href="https://github.com/alvesvaren/skills" target="_blank" rel="noopener" className="text-informative underline">
+          Claude Code skills
+        </a>
+        : short rule files that Claude Code loads when it writes code, such as typescript-best-practices and react-best-practices.
+      </>,
+      "They were copied into the repo, so every team member's Claude Code follows the same conventions.",
+      "A TanStack Router app with typed routes and links, and shareable state such as the selected site and filters kept in the URL.",
+      "A map of Germany with IKEA's supply chain as dots and links, and a detail panel for each site with its own URL.",
+      "Realistic mock data in a JSON file, with as many fields as IKEA could realistically collect from suppliers.",
+      "A look that follows IKEA's design system, and a page that shows every component and state.",
+      "To go through the scope with us before writing any code, since most of us are new to React.",
+    ],
+  },
+  {
+    title: "What Claude built",
+    points: [
+      "The map and graph views, an overview of sites that need review, and a panel with details for each site.",
+      "Risk rules with tests that keep high risk and missing data apart, and a script that generates fictional data for 30 sites.",
+      "IKEA colour tokens and components, shown on the design page.",
+      "CLAUDE.md and docs/PROGRESS.md, so later sessions and team members know the rules and where the project stands.",
+    ],
   },
 ];
 
@@ -207,6 +238,23 @@ function Document() {
             We have used Claude Code to help build Eyekea, mostly running the model Claude Opus 5.5.
             The numbers below come from the Claude Code session logs, from 1 to 8 October 2026.
           </p>
+
+          <p className="text-lg font-bold">Scaffolding</p>
+          <p className="max-w-2xl text-ink-subtle">
+            The first session on 1 October built the base of the app in about 45 minutes, from three prompts and a photo of our paper sketch.
+            It ran on Claude Opus 5.5 in Claude Code.
+          </p>
+          <Accordion className="max-w-3xl">
+            {SCAFFOLDING_STEPS.map(({ title, points }) => (
+              <AccordionItem key={title} title={title}>
+                <ul className="flex list-disc flex-col gap-1 pl-5 text-ink-subtle">
+                  {points.map((point, index) => (
+                    <li key={index}>{point}</li>
+                  ))}
+                </ul>
+              </AccordionItem>
+            ))}
+          </Accordion>
 
           <p className="text-lg font-bold">Environmental impact</p>
           <table className="max-w-md text-sm">

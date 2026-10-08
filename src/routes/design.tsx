@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { z } from "zod";
 import { RouteNotFound, RoutePending } from "../components/RouteStates";
+import { Accordion, AccordionItem } from "../components/ui/Accordion";
 import { Button, buttonVariants } from "../components/ui/Button";
 import { Card, CardTitle, StatTile } from "../components/ui/Card";
 import { pillVariants } from "../components/ui/Pill";
@@ -163,6 +164,20 @@ function DesignSystem() {
             <CardTitle>Card title</CardTitle>
             <p className="text-ink-subtle">Cards group related content on a subtle grey surface.</p>
           </Card>
+        </Section>
+
+        <Section title="Accordion">
+          <p className="text-xs text-ink-subtle">
+            Built on native <code>details</code>, so open rows need no state. Pass <code>open</code> to start a row expanded.
+          </p>
+          <Accordion>
+            <AccordionItem title="Accordion item" hint="Optional hint under the title" open>
+              <p className="text-ink-subtle">Content shows when the row is open.</p>
+            </AccordionItem>
+            <AccordionItem title="Closed item">
+              <p className="text-ink-subtle">Click the row to open it.</p>
+            </AccordionItem>
+          </Accordion>
         </Section>
 
         <Section title="SusAF diagram">
