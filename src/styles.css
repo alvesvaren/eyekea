@@ -59,9 +59,9 @@
    * risk the darkest. Unknown is drawn as a hollow ring, never as a fill, so a
    * site that did not report cannot pass for a risk level.
    */
-  --color-risk-high: var(--color-negative);
+  --color-risk-high: #e85773;
   --color-risk-medium: #ffb81c;
-  --color-risk-low: var(--color-sustainability);
+  --color-risk-low: #53bb92;
   --color-risk-unknown: var(--color-ink-muted);
 
   --font-sans: "Noto IKEA", "Noto Sans", system-ui, sans-serif;

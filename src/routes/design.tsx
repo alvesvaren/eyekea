@@ -2,10 +2,12 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { z } from "zod";
 import { RouteNotFound, RoutePending } from "../components/RouteStates";
+import { Accordion, AccordionItem } from "../components/ui/Accordion";
 import { Button, buttonVariants } from "../components/ui/Button";
 import { Card, CardTitle, StatTile } from "../components/ui/Card";
 import { pillVariants } from "../components/ui/Pill";
 import { Status } from "../components/ui/Status";
+import { SusafDiagram, SusafEffectDetails, defineSusafEffects } from "../components/ui/SusafDiagram";
 import { TabList, tabVariants } from "../components/ui/Tabs";
 import { SITE_STATUSES, STATUS_META } from "../supply-chain/status";
 
@@ -17,7 +19,10 @@ import { SITE_STATUSES, STATUS_META } from "../supply-chain/status";
 const DEMO_TABS = ["details", "suppliers", "history"] as const;
 
 export const Route = createFileRoute("/design")({
-  validateSearch: z.object({ tab: z.enum(DEMO_TABS).default("details").catch("details") }),
+  validateSearch: z.object({
+    tab: z.enum(DEMO_TABS).default("details").catch("details"),
+    effect: z.string().optional().catch(undefined),
+  }),
   component: DesignSystem,
 });
 
@@ -30,10 +35,21 @@ const COLOUR_GROUPS = {
   Risk: ["risk-high", "risk-medium", "risk-low", "risk-unknown"],
 };
 
+const DEMO_SUSAF_EFFECTS = defineSusafEffects({
+  a: { dimension: "social", order: "immediate", label: "Immediate effect", description: "Click a card to select it. The URL keeps the selection.", leadsTo: ["b"] },
+  b: { dimension: "economic", order: "enabling", label: "Enabling effect", leadsTo: ["c"] },
+  c: { dimension: "environmental", order: "structural", label: "Structural effect" },
+  d: { dimension: "technical", order: "structural", label: "Two effects share a cell" },
+  e: { dimension: "technical", order: "structural", label: "and are spread along it" },
+});
+
 const BUTTON_VARIANTS = ["primary", "emphasised", "secondary", "tertiary", "destructive"] as const;
 
 function DesignSystem() {
-  const { tab } = Route.useSearch();
+  const { tab, effect } = Route.useSearch();
+  const navigate = Route.useNavigate();
+  const selectEffect = (id: string | undefined) =>
+    navigate({ search: (prev) => ({ ...prev, effect: id }), resetScroll: false });
 
   return (
     <div className="flex-1 overflow-y-auto">
@@ -148,6 +164,37 @@ function DesignSystem() {
             <CardTitle>Card title</CardTitle>
             <p className="text-ink-subtle">Cards group related content on a subtle grey surface.</p>
           </Card>
+        </Section>
+
+        <Section title="Accordion">
+          <p className="text-xs text-ink-subtle">
+            Built on native <code>details</code>, so open rows need no state. Pass <code>open</code> to start a row expanded.
+          </p>
+          <Accordion>
+            <AccordionItem title="Accordion item" hint="Optional hint under the title" open>
+              <p className="text-ink-subtle">Content shows when the row is open.</p>
+            </AccordionItem>
+            <AccordionItem title="Closed item">
+              <p className="text-ink-subtle">Click the row to open it.</p>
+            </AccordionItem>
+          </Accordion>
+        </Section>
+
+        <Section title="SusAF diagram">
+          <p className="text-xs text-ink-subtle">
+            The Sustainability Awareness Framework. Pass effects keyed by id with <code>defineSusafEffects</code>, each with a
+            dimension, an order of effect, and optional <code>leadsTo</code> ids that draw arrows between them. Clicking a card selects it, and{" "}
+            <code>SusafEffectDetails</code> shows its <code>description</code>. Keep the selection in the URL.
+          </p>
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-start">
+            <SusafDiagram
+              effects={DEMO_SUSAF_EFFECTS}
+              selectedId={effect}
+              onSelect={selectEffect}
+              className="w-full max-w-xl min-w-0 flex-1"
+            />
+            <SusafEffectDetails effects={DEMO_SUSAF_EFFECTS} selectedId={effect} onSelect={selectEffect} className="lg:w-72 lg:shrink-0" />
+          </div>
         </Section>
 
         <Section title="Route states">
