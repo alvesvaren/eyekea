@@ -27,7 +27,13 @@ const SUSAF_EFFECTS = defineSusafEffects({
     label: "Managers see troublesome locations",
     description:
       "EYEKEA helps the managers of IKEA to map the supply chain, and sort by different risk levels. This way, they know where to look first.",
-    leadsTo: ["audit-allocation", "overview"],
+    leadsTo: ["audit-allocation", "overview", "worker-wellbeing"],
+  },
+  "worker-wellbeing": {
+    dimension: "individual",
+    order: "enabling",
+    label: "Workers well-being is improved",
+    description: "Issues are highlighted, enabling IKEA to resolve them earlier.",
   },
   // ───────── Social ─────────
   "see-risk": {
@@ -79,13 +85,6 @@ const SUSAF_EFFECTS = defineSusafEffects({
     label: "Access to a larger market",
     description:
       "Aligning with internationally recognised principles can allow a company to access a larger market. (supply chains, value)",
-  },
-  "not-primary-focus": {
-    dimension: "economic",
-    order: "immediate",
-    label: "Economy is not the primary focus",
-    description:
-      "However, the economic dimension is not the primary focus of the EYEKEA innovation. (innovation, CRM, governance)",
   },
   "audit-allocation": {
     dimension: "economic",
