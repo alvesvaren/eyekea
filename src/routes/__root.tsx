@@ -24,7 +24,7 @@ function RootLayout() {
             Design system
           </Link>
           <Link to="/document" className="text-ink-subtle hover:text-ink" activeProps={{ className: "text-ink underline" }}>
-            Innovation Document
+            Innovation document
           </Link>
         </nav>
       </header>

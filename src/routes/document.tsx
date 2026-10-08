@@ -9,18 +9,21 @@ export const Route = createFileRoute('/document')({
 const team = [
   { name: 'Alve Svarén', mail: 'mejl@gmail.com' },
   { name: 'Tristan Harbander', mail: 'harbander.tristan@gmail.com' },
-  { name: 'Leo Söderberg', mail: 'mejl@gmail.com' }
+  { name: 'Leo Söderberg', mail: 'leoso@chalmers.se' },
+  { name: 'Vilmer Hahne Lundqvist', mail: 'vilmerha@chalmers.se'},
+  { name: 'Felix Andersson', mail: 'fluxlux@gmail.com'},
+  { name: 'Markus Rynnerr', mail: 'akdj@gmail.com'}
 ];
 
 function Document() {
   return (
     
     <div className="flex-1 overflow-y-auto">
-      <div className="mx-auto flex max-w-5xl flex-col gap-12 px-6 py-10">
+      <div className="mx-auto flex max-w-5xl flex-col gap-4 px-6 py-10">
 
         <header className="flex flex-col gap-2">
           <h1 className="text-3xl font-bold">Innovation Document</h1>
-          <p className="max-w-2xl text-ink-subtle">Group 9</p>
+          <p className="max-w-2xl text-ink-subtle">TEK830 - Group 9</p>
         </header>
 
         <DemoButton></DemoButton>
@@ -28,12 +31,14 @@ function Document() {
         {/* Section 1 */}
         <Section title="About the team">
           <p className="text-lg font-bold">Contact</p>
-          {Object.entries(team).map(([index, member]) => (
-            <div key={index} className="flex flex-col gap-2">
-              <h3 className="text-xs font-bold text-ink-subtle">{member['name']}</h3>
-              <p className="text-xs text-ink-subtle">{member['mail']}</p>
-            </div>
-          ))}
+          <div className='grid grid-cols-3 space-y-4'>
+            {Object.entries(team).map(([index, member]) => (
+              <div key={index} className="flex flex-col">
+                <h3 className="text-xs font-bold text-ink-subtle">{member.name}</h3>
+                <MailToLink>{member.mail}</MailToLink>
+              </div>
+            ))}
+          </div>
         </Section>
 
         {/* Section 2 */}
@@ -50,16 +55,9 @@ function Document() {
           </p>
           <img 
             src="https://cdn.discordapp.com/attachments/1365745673734983720/1557468437565931632/ALKuztZMO5Ir9cTebMTE72qSyxdg2d_8He4NGNpujE4tanI25AqnmBpSGeGHUcmLUvZY6NSw5I2uQfs2XEDUJmiFyMRcB3o8IjTwUbU-QSWz4xDLBsfurByi-jGH2mDVj03JBDXj0Wg3KJvWEQ4lmIK9a2l_magkIxyHpd1FUVtv5Qs2048.png?backend=b2&ex=6ac7e903&is=6ac69783&hm=7845cf642912949401e0e5979a81864403398b8b10082524b6d5a8b17be00e4c&"
-            style={{height:450, width:600}}
+            style={{height:3*120, width:4*120}}
             alt="new"
           />
-
-          <p className="text-lg font-bold">Implementation</p>
-          <p className="max-w-2xl text-ink-subtle">
-            We are currently building our application with React. We integrated MapLibre-gl to show the locations on the map of Germany.
-            The data is extracted from a JSON file and for this course we have synthesized realistic data.
-            To experiment with modern development tools we will use Claude Code in the development process of Eyekea.
-          </p>
 
         </Section>
 
@@ -97,7 +95,43 @@ function Document() {
             style={{height:600, width:600}}
             alt="new"
           />
+        </Section>
 
+        {/* Section 5 */}
+        <Section title="Research and Sources">
+          
+          <p className="text-lg font-bold">Documentation</p>
+
+          <HyperLink link="https://react.dev/learn">React</HyperLink>
+
+          <p className="text-lg font-bold">Articles</p>
+          {/* Source 1 */}
+
+          <Reference link="https://doi.org/10.64628/aaj.hus4w4sh3" reference="Surmeier A., Meyer I., & Maleka M. (2026, June 2)">
+            Global supply chains keep workers poor: three case studies show how the cycle can be broken
+          </Reference>
+
+          {/* Source 2 */}
+
+          <Reference link="https://www.workersrights.org/our-work/issues/unchecked-corporate-power/unjust-supply-chains/" reference="Worker Rights Consortium (n.d.).">
+            Unjust supply chain
+          </Reference>
+          
+          <Reference link="https://zenodo.org/records/7342575" reference="Betz S., Deuboc L., Penzenstadler B., Porras J., Chitchyan R.,\n Seyff N., Venters C. C., Brooks I. (2022, November 21)">SusAF Workbook 6.0</Reference>
+
+          <p className="text-lg font-bold">Other</p>
+          {/* Source 1 */}
+          <HyperLink link="https://www.deutscher-nachhaltigkeitskodex.de/de/">Deutscher Nachhaltigets Kodex</HyperLink>
+          
+        </Section>
+
+        {/* Footer */}
+        <Section title="">
+        <img 
+            src="https://cdn.discordapp.com/attachments/1303837844619661312/1557706414187618414/0de9873c-e32c-4be2-a458-a1ed00434dad.png?ex=6ac8c6a5&is=6ac77525&hm=aa7ab045935ceef623ca93a6ec5c2416a50724ade02b8b3749443962bba4d599&"
+            style={{height:259/4, width:960/4}}
+            alt="new"
+          />
         </Section>
 
       </div>
@@ -115,12 +149,41 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
 }
 
 
-export function DemoButton() {
+function DemoButton() {
   return (
     <div className="flex h-full flex-col items-start justify-center">
       <Link to="/" className={buttonVariants({ size: "la", variant: "primary" })}>
         DEMO
       </Link>
     </div>
+  );
+}
+
+function HyperLink({children, link}: {children: string, link: string} ) {
+  return (
+    <a href={link} target="_blank" rel="noopener" className="underline text-informative text-md font-bold">
+      {children}
+    </a>
+  );
+}
+
+function Reference({children, link, reference}: {children: string, link: string, reference: string}) {
+  return (
+    <p>
+      <h3>
+        <HyperLink link={link}>{children}</HyperLink>
+      </h3>
+      <p className="max-w-2xl text-ink-subtle">
+        {reference.split("\\n").flatMap(x => [<br/>,x]).slice(1)}
+      </p>
+    </p>
+  );
+}
+
+function MailToLink({children}: {children: string}) {
+  return(
+    <HyperLink link={`mailto:${children}`}>
+      {children}
+    </HyperLink>
   );
 }
