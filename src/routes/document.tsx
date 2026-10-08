@@ -14,12 +14,21 @@ const team = [
   { name: 'Alve Leuchovius Svarén', mail: 'alvel@chalmers.se' },
   { name: 'Tristan Harbander', mail: 'harbander.tristan@gmail.com' },
   { name: 'Leo Söderberg', mail: 'leoso@chalmers.se' },
-  { name: 'Karl Vilmer Olav Hahne Lundqvist', mail: 'vilmerha@chalmers.se'},
-  { name: 'Felix Andersson', mail: 'fluxlux@gmail.com'},
-  { name: 'Markus Rynner', mail: 'markusry@chalmers.se'}
-] satisfies {name: string; mail:string}[];
+  { name: 'Karl Vilmer Olav Hahne Lundqvist', mail: 'vilmerha@chalmers.se' },
+  { name: 'Felix Andersson', mail: 'fluxlux@gmail.com' },
+  { name: 'Markus Rynner', mail: 'markusry@chalmers.se' }
+] satisfies { name: string; mail: string }[];
 
 const SUSAF_EFFECTS = defineSusafEffects({
+  // ───────── Individual ─────────
+  "see-trouble": {
+    dimension: "individual",
+    order: "immediate",
+    label: "Managers see troublesome locations",
+    description:
+      "EYEKEA helps the managers of IKEA to map the supply chain, and sort by different risk levels. This way, they know where to look first.",
+    leadsTo: ["audit-allocation", "overview"],
+  },
   // ───────── Social ─────────
   "see-risk": {
     dimension: "social",
@@ -77,6 +86,13 @@ const SUSAF_EFFECTS = defineSusafEffects({
     label: "Economy is not the primary focus",
     description:
       "However, the economic dimension is not the primary focus of the EYEKEA innovation. (innovation, CRM, governance)",
+  },
+  "audit-allocation": {
+    dimension: "economic",
+    order: "enabling",
+    label: "Audits are allocated where needed",
+    description:
+      "Since EYEKEA estimates a risk level of each location, IKEA can focus their efforts and resources where it is needed most. For example, to send audits.",
   },
 
   // ───────── Technical ─────────
@@ -142,7 +158,7 @@ function Document() {
   const selectEffect = (id: string | undefined) => navigate({ search: { effect: id }, resetScroll: false });
 
   return (
-    
+
     <div className="flex-1 overflow-y-auto">
       <div className="mx-auto flex max-w-5xl flex-col gap-4 px-6 py-10">
 
@@ -178,9 +194,9 @@ function Document() {
           <p className="max-w-2xl text-ink-subtle">
             The initial sketch of the EYEKEA Web UI.
           </p>
-          <img 
+          <img
             src="https://cdn.discordapp.com/attachments/1365745673734983720/1557468437565931632/ALKuztZMO5Ir9cTebMTE72qSyxdg2d_8He4NGNpujE4tanI25AqnmBpSGeGHUcmLUvZY6NSw5I2uQfs2XEDUJmiFyMRcB3o8IjTwUbU-QSWz4xDLBsfurByi-jGH2mDVj03JBDXj0Wg3KJvWEQ4lmIK9a2l_magkIxyHpd1FUVtv5Qs2048.png?backend=b2&ex=6ac7e903&is=6ac69783&hm=7845cf642912949401e0e5979a81864403398b8b10082524b6d5a8b17be00e4c&"
-            style={{height:3*120, width:4*120}}
+            style={{ height: 3 * 120, width: 4 * 120 }}
             alt="new"
           />
 
@@ -282,7 +298,7 @@ function Document() {
 
         {/* Section 6 */}
         <Section title="Research and Sources">
-          
+
           <p className="text-lg font-bold">Documentation</p>
 
           <HyperLink link="https://react.dev/learn">React</HyperLink>
@@ -299,7 +315,7 @@ function Document() {
           <Reference link="https://www.workersrights.org/our-work/issues/unchecked-corporate-power/unjust-supply-chains/" reference="Worker Rights Consortium (n.d.).">
             Unjust supply chain
           </Reference>
-          
+
           <Reference link="https://zenodo.org/records/7342575" reference="Betz S., Deuboc L., Penzenstadler B., Porras J., Chitchyan R.,\n Seyff N., Venters C. C., Brooks I. (2022, November 21)">SusAF Workbook 6.0</Reference>
 
           <Reference link="https://simonpcouch.com/blog/2026-01-20-cc-impact/" reference="Couch S. (2026, January 20)">
@@ -313,14 +329,14 @@ function Document() {
           <p className="text-lg font-bold">Other</p>
           {/* Source 1 */}
           <HyperLink link="https://www.deutscher-nachhaltigkeitskodex.de/de/">Deutscher Nachhaltigets Kodex</HyperLink>
-          
+
         </Section>
 
         {/* Footer */}
         <Section title="">
-        <img 
+          <img
             src="https://cdn.discordapp.com/attachments/1303837844619661312/1557706414187618414/0de9873c-e32c-4be2-a458-a1ed00434dad.png?ex=6ac8c6a5&is=6ac77525&hm=aa7ab045935ceef623ca93a6ec5c2416a50724ade02b8b3749443962bba4d599&"
-            style={{height:259/4, width:960/4}}
+            style={{ height: 259 / 4, width: 960 / 4 }}
             alt="new"
           />
         </Section>
@@ -350,7 +366,7 @@ function DemoButton() {
   );
 }
 
-function HyperLink({children, link}: {children: string, link: string} ) {
+function HyperLink({ children, link }: { children: string, link: string }) {
   return (
     <a href={link} target="_blank" rel="noopener" className="underline text-informative text-md font-bold">
       {children}
@@ -358,21 +374,21 @@ function HyperLink({children, link}: {children: string, link: string} ) {
   );
 }
 
-function Reference({children, link, reference}: {children: string, link: string, reference: string}) {
+function Reference({ children, link, reference }: { children: string, link: string, reference: string }) {
   return (
     <p>
       <h3>
         <HyperLink link={link}>{children}</HyperLink>
       </h3>
       <p className="max-w-2xl text-ink-subtle">
-        {reference.split("\\n").flatMap(x => [<br/>,x]).slice(1)}
+        {reference.split("\\n").flatMap(x => [<br />, x]).slice(1)}
       </p>
     </p>
   );
 }
 
-function MailToLink({children}: {children: string}) {
-  return(
+function MailToLink({ children }: { children: string }) {
+  return (
     <HyperLink link={`mailto:${children}`}>
       {children}
     </HyperLink>
