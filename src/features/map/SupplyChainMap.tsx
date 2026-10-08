@@ -93,7 +93,7 @@ function paintFace(context: OffscreenCanvasRenderingContext2D, status: SiteStatu
   context.fill();
 
   context.fillStyle = hollow ? surface : color;
-  context.strokeStyle = hollow ? color : cssVar("--color-ink");
+  context.strokeStyle = hollow ? color : cssVar("--color-black");
   context.lineWidth = FACE_STROKE;
   context.lineCap = "round";
   context.beginPath();

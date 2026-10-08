@@ -5,7 +5,7 @@ import { formatPercent } from "../../lib/format";
 
 /** Unknown is hatched rather than filled, so a tier with gaps never reads as a risk level. */
 const SEGMENT_CLASSES = {
-  high: "bg-risk-high text-ink-inverse",
+  high: "bg-risk-high text-ink",
   medium: "bg-risk-medium text-ink",
   low: "bg-risk-low text-ink",
   unknown:

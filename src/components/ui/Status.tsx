@@ -6,9 +6,9 @@ import { FACE_CENTER, FACE_PATHS, FACE_RADIUS, FACE_SIZE, FACE_STROKE, isHollow 
 const faceVariants = cva("size-4 shrink-0", {
   variants: {
     tone: {
-      high: "fill-risk-high stroke-ink",
-      medium: "fill-risk-medium stroke-ink",
-      low: "fill-risk-low stroke-ink",
+      high: "fill-risk-high stroke-black",
+      medium: "fill-risk-medium stroke-black",
+      low: "fill-risk-low stroke-black",
       unknown: "fill-surface stroke-risk-unknown",
     },
     size: {
