@@ -20,70 +20,80 @@ const team = [
 ] satisfies {name: string; mail:string}[];
 
 const SUSAF_EFFECTS = defineSusafEffects({
+  // ───────── Social ─────────
   "see-risk": {
-    dimension: "individual",
+    dimension: "social",
     order: "immediate",
-    label: "Managers see which sites need attention",
-    description: "The map and the overview list flag high-risk sites, so a supply chain manager knows where to look first instead of reading every audit report.",
-    leadsTo: ["focus-audits"],
+    label: "Reinforces stakeholder relationships",
+    description:
+      "By using EYEKEA you can reinforce stakeholder relationships by showing your commitment to corporate social responsibility. This strengthens the trust and sense of community.",
+    leadsTo: ["gaps-visible", "overview"],
   },
   "gaps-visible": {
     dimension: "social",
-    order: "immediate",
-    label: "Sites that do not report stand out",
-    description: "A site with missing data is shown as unknown, never as healthy. Silence becomes a signal instead of a blind spot.",
-    leadsTo: ["focus-audits"],
+    order: "enabling",
+    label: "Promotes inclusiveness",
+    description:
+      "Additionally, improving labor conditions over the supply chain may promote inclusiveness in IKEA locations and loyalty to the IKEA brand. Inclusiveness, participation are central in the IKEA vision and values.",
+    leadsTo: ["browser"],
   },
   "browser": {
-    dimension: "technical",
-    order: "immediate",
-    label: "Runs in any browser, no install",
-    description: "Eyekea is a web app, so anyone at IKEA can open it without installing or maintaining extra software.",
-  },
-  "light-data": {
-    dimension: "environmental",
-    order: "immediate",
-    label: "Small static data, low hosting energy",
-    description: "The supply chain is a single static JSON file, so the app needs no database server and uses little energy to host.",
-  },
-  "focus-audits": {
-    dimension: "economic",
-    order: "enabling",
-    label: "Audits go where risk is highest",
-    description: "With risk and data gaps visible, IKEA can spend its audit budget on the sites that need it most.",
-    leadsTo: ["fewer-trips", "fair-work"],
-  },
-  "digital-reports": {
-    dimension: "technical",
-    order: "enabling",
-    label: "Suppliers report data digitally",
-    description: "To avoid being flagged as missing data, suppliers have a reason to report working conditions in a structured, digital form.",
-    leadsTo: ["gaps-visible"],
-  },
-  "better-conditions": {
-    dimension: "individual",
-    order: "enabling",
-    label: "Problems for workers caught sooner",
-    description: "Long hours, injuries, or low wages show up in the data earlier, so they can be acted on before they grow.",
-  },
-  "fair-work": {
     dimension: "social",
     order: "structural",
-    label: "Fairer work across the supply chain",
-    description: "Over time, suppliers deep in the chain are held to the same standards as IKEA's own sites, supporting a just transition.",
-    leadsTo: ["brand-trust"],
+    label: "Puts the issue in the spotlights",
+    description:
+      "EYEKEA is a step in the right direction, and hopefully other companies would be inspired by IKEAs efforts to improve their workers’ rights and well-being. It could lead to societal improvement in social sustainability.",
   },
-  "brand-trust": {
-    dimension: "economic",
-    order: "structural",
-    label: "Stronger trust in the IKEA brand",
-    description: "Customers and investors can trust that IKEA's values hold beyond its own stores and warehouses.",
-  },
-  "fewer-trips": {
+
+  // ───────── Environmental ─────────
+  "discover-env-risks": {
     dimension: "environmental",
-    order: "structural",
-    label: "Fewer site visits and less travel",
-    description: "Targeted audits replace routine visits to low-risk sites, cutting travel and its emissions.",
+    order: "enabling",
+    label: "Discover environmental risks",
+    description:
+      "EYEKEA will enable IKEA to discover possible environmental risks by measuring resource usage, enabling IKEA to request remedies or change suppliers. (materials and resources, waste pollution)",
+    leadsTo: ["market-access"],
+  },
+  "overview": {
+    dimension: "environmental",
+    order: "enabling",
+    label: "Better overview of the supply chain",
+    description:
+      "While EYEKEA is specialized towards monitoring individual locations in the supply chain, the overview will simplify viewing the supply chain and provide insights to improve the overall logistics of the supply chain to increase efficiency. (logistics)",
+    leadsTo: ["market-access"],
+  },
+
+  // ───────── Economic ─────────
+  "market-access": {
+    dimension: "economic",
+    order: "enabling",
+    label: "Access to a larger market",
+    description:
+      "Aligning with internationally recognised principles can allow a company to access a larger market. (supply chains, value)",
+  },
+  "not-primary-focus": {
+    dimension: "economic",
+    order: "immediate",
+    label: "Economy is not the primary focus",
+    description:
+      "However, the economic dimension is not the primary focus of the EYEKEA innovation. (innovation, CRM, governance)",
+  },
+
+  // ───────── Technical ─────────
+  "scalable-network": {
+    dimension: "technical",
+    order: "immediate",
+    label: "Scalable network of reports and audits",
+    description:
+      "EYEKEA has the capability to expand into a massive network of reports, articles and audits, reducing audit fatigue and lowering costs while creating a reliable database for the future. (scalability)",
+    leadsTo: ["overview", "adaptable-formats"],
+  },
+  "adaptable-formats": {
+    dimension: "technical",
+    order: "enabling",
+    label: "Adaptable to new report formats",
+    description:
+      "To maintain EYEKEA as standards for public reports change will require maintenance. However, while translating public reports into our internal format will require updates to the software, it additionally means that EYEKEA can be adapted to extend to any formats that provide relevant data. (usability, adaptability)",
   },
 });
 
