@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { z } from "zod";
 import { Accordion, AccordionItem } from "../components/ui/Accordion";
 import { buttonVariants } from "../components/ui/Button";
-import { SusafDiagram, SusafEffectDetails, type SusafEffect } from "../components/ui/SusafDiagram";
+import { SusafDiagram, SusafEffectDetails, defineSusafEffects } from "../components/ui/SusafDiagram";
 
 export const Route = createFileRoute('/document')({
   validateSearch: z.object({ effect: z.string().optional().catch(undefined) }),
@@ -19,83 +19,73 @@ const team = [
   { name: 'Markus Rynner', mail: 'markusry@chalmers.se'}
 ] satisfies {name: string; mail:string}[];
 
-const SUSAF_EFFECTS: SusafEffect[] = [
-  {
-    id: "see-risk",
+const SUSAF_EFFECTS = defineSusafEffects({
+  "see-risk": {
     dimension: "individual",
     order: "immediate",
     label: "Managers see which sites need attention",
     description: "The map and the overview list flag high-risk sites, so a supply chain manager knows where to look first instead of reading every audit report.",
     leadsTo: ["focus-audits"],
   },
-  {
-    id: "gaps-visible",
+  "gaps-visible": {
     dimension: "social",
     order: "immediate",
     label: "Sites that do not report stand out",
     description: "A site with missing data is shown as unknown, never as healthy. Silence becomes a signal instead of a blind spot.",
     leadsTo: ["focus-audits"],
   },
-  {
-    id: "browser",
+  "browser": {
     dimension: "technical",
     order: "immediate",
     label: "Runs in any browser, no install",
     description: "Eyekea is a web app, so anyone at IKEA can open it without installing or maintaining extra software.",
   },
-  {
-    id: "light-data",
+  "light-data": {
     dimension: "environmental",
     order: "immediate",
     label: "Small static data, low hosting energy",
     description: "The supply chain is a single static JSON file, so the app needs no database server and uses little energy to host.",
   },
-  {
-    id: "focus-audits",
+  "focus-audits": {
     dimension: "economic",
     order: "enabling",
     label: "Audits go where risk is highest",
     description: "With risk and data gaps visible, IKEA can spend its audit budget on the sites that need it most.",
     leadsTo: ["fewer-trips", "fair-work"],
   },
-  {
-    id: "digital-reports",
+  "digital-reports": {
     dimension: "technical",
     order: "enabling",
     label: "Suppliers report data digitally",
     description: "To avoid being flagged as missing data, suppliers have a reason to report working conditions in a structured, digital form.",
     leadsTo: ["gaps-visible"],
   },
-  {
-    id: "better-conditions",
+  "better-conditions": {
     dimension: "individual",
     order: "enabling",
     label: "Problems for workers caught sooner",
     description: "Long hours, injuries, or low wages show up in the data earlier, so they can be acted on before they grow.",
   },
-  {
-    id: "fair-work",
+  "fair-work": {
     dimension: "social",
     order: "structural",
     label: "Fairer work across the supply chain",
     description: "Over time, suppliers deep in the chain are held to the same standards as IKEA's own sites, supporting a just transition.",
     leadsTo: ["brand-trust"],
   },
-  {
-    id: "brand-trust",
+  "brand-trust": {
     dimension: "economic",
     order: "structural",
     label: "Stronger trust in the IKEA brand",
     description: "Customers and investors can trust that IKEA's values hold beyond its own stores and warehouses.",
   },
-  {
-    id: "fewer-trips",
+  "fewer-trips": {
     dimension: "environmental",
     order: "structural",
     label: "Fewer site visits and less travel",
     description: "Targeted audits replace routine visits to low-risk sites, cutting travel and its emissions.",
   },
-];
+});
 
 const SCAFFOLDING_STEPS = [
   {
@@ -104,11 +94,11 @@ const SCAFFOLDING_STEPS = [
       <>
         We used Alve's existing{" "}
         <a href="https://github.com/alvesvaren/skills" target="_blank" rel="noopener" className="text-informative underline">
-          Claude Code skills
+          skills
         </a>
-        : short rule files that Claude Code loads when it writes code, such as typescript-best-practices and react-best-practices.
+        : short rule files that makes sure the generated code follows conventional patterns and keeps a clear structure that we understand.
       </>,
-      "They were copied into the repo, so every team member's Claude Code follows the same conventions.",
+      "These were also copied into the repo, so anyone working with agentic coding follows the same rules.",
       "A TanStack Router app with typed routes and links, and shareable state such as the selected site and filters kept in the URL.",
       "A map of Germany with IKEA's supply chain as dots and links, and a detail panel for each site with its own URL.",
       "Realistic mock data in a JSON file, with as many fields as IKEA could realistically collect from suppliers.",

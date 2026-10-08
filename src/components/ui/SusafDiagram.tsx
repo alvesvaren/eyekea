@@ -19,16 +19,27 @@ export const SUSAF_ORDERS = ["immediate", "enabling", "structural"] as const;
 export type SusafDimension = (typeof SUSAF_DIMENSIONS)[number];
 export type SusafOrder = (typeof SUSAF_ORDERS)[number];
 
-export type SusafEffect = {
-  id: string;
+export type SusafEffect<Id extends string = string> = {
   dimension: SusafDimension;
   order: SusafOrder;
   label: string;
   /** Longer text shown when the effect is selected. */
   description?: string;
-  /** Ids of the effects this one causes. */
-  leadsTo?: string[];
+  /** Keys of the effects this one causes. */
+  leadsTo?: Id[];
 };
+
+/** Effects keyed by a stable id, which the URL and `leadsTo` refer to. */
+export type SusafEffects<Id extends string = string> = Record<Id, SusafEffect<Id>>;
+
+/** Infers the ids from the keys, so a `leadsTo` typo fails to compile. */
+export function defineSusafEffects<Id extends string>(effects: Record<Id, SusafEffect<NoInfer<Id>>>): SusafEffects<Id> {
+  return effects;
+}
+
+function withIds(effects: SusafEffects) {
+  return Object.entries(effects).map(([id, effect]) => ({ id, ...effect }));
+}
 
 type Point = { x: number; y: number };
 
@@ -61,7 +72,7 @@ function pentagon(radius: number) {
 }
 
 /** Spreads the effects of one cell evenly along the pentagon edge between the slice's two axes. */
-function placeEffects(effects: SusafEffect[]) {
+function placeEffects(effects: ReturnType<typeof withIds>) {
   return effects.map((effect) => {
     const siblings = effects.filter(({ dimension, order }) => dimension === effect.dimension && order === effect.order);
     const t = (siblings.indexOf(effect) + 1) / (siblings.length + 1);
@@ -106,7 +117,7 @@ type SusafSelection = {
 };
 
 type SusafDiagramProps = SusafSelection & {
-  effects: SusafEffect[];
+  effects: SusafEffects;
   /** Text in the centre, usually the software's name. */
   subject?: string;
   className?: string;
@@ -115,7 +126,7 @@ type SusafDiagramProps = SusafSelection & {
 export function SusafDiagram({ effects, subject = "Your software", selectedId, onSelect, className }: SusafDiagramProps) {
   const markerId = useId();
   const activeMarkerId = `${markerId}-active`;
-  const placed = placeEffects(effects);
+  const placed = placeEffects(withIds(effects));
   const byId = new Map(placed.map((effect) => [effect.id, effect]));
   const arrows = placed.flatMap(({ id, leadsTo = [], ...from }) =>
     leadsTo.flatMap((targetId) => {
@@ -227,12 +238,13 @@ export function SusafDiagram({ effects, subject = "Your software", selectedId, o
 }
 
 type SusafEffectDetailsProps = SusafSelection & {
-  effects: SusafEffect[];
+  effects: SusafEffects;
   className?: string;
 };
 
 /** The selected effect's description, plus links to the effects it causes and is caused by. */
-export function SusafEffectDetails({ effects, selectedId, onSelect, className }: SusafEffectDetailsProps) {
+export function SusafEffectDetails({ effects: effectsById, selectedId, onSelect, className }: SusafEffectDetailsProps) {
+  const effects = withIds(effectsById);
   const effect = effects.find(({ id }) => id === selectedId);
   if (!effect) {
     return (

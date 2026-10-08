@@ -7,7 +7,7 @@ import { Button, buttonVariants } from "../components/ui/Button";
 import { Card, CardTitle, StatTile } from "../components/ui/Card";
 import { pillVariants } from "../components/ui/Pill";
 import { Status } from "../components/ui/Status";
-import { SusafDiagram, SusafEffectDetails, type SusafEffect } from "../components/ui/SusafDiagram";
+import { SusafDiagram, SusafEffectDetails, defineSusafEffects } from "../components/ui/SusafDiagram";
 import { TabList, tabVariants } from "../components/ui/Tabs";
 import { SITE_STATUSES, STATUS_META } from "../supply-chain/status";
 
@@ -35,13 +35,13 @@ const COLOUR_GROUPS = {
   Risk: ["risk-high", "risk-medium", "risk-low", "risk-unknown"],
 };
 
-const DEMO_SUSAF_EFFECTS: SusafEffect[] = [
-  { id: "a", dimension: "social", order: "immediate", label: "Immediate effect", description: "Click a card to select it. The URL keeps the selection.", leadsTo: ["b"] },
-  { id: "b", dimension: "economic", order: "enabling", label: "Enabling effect", leadsTo: ["c"] },
-  { id: "c", dimension: "environmental", order: "structural", label: "Structural effect" },
-  { id: "d", dimension: "technical", order: "structural", label: "Two effects share a cell" },
-  { id: "e", dimension: "technical", order: "structural", label: "and are spread along it" },
-];
+const DEMO_SUSAF_EFFECTS = defineSusafEffects({
+  a: { dimension: "social", order: "immediate", label: "Immediate effect", description: "Click a card to select it. The URL keeps the selection.", leadsTo: ["b"] },
+  b: { dimension: "economic", order: "enabling", label: "Enabling effect", leadsTo: ["c"] },
+  c: { dimension: "environmental", order: "structural", label: "Structural effect" },
+  d: { dimension: "technical", order: "structural", label: "Two effects share a cell" },
+  e: { dimension: "technical", order: "structural", label: "and are spread along it" },
+});
 
 const BUTTON_VARIANTS = ["primary", "emphasised", "secondary", "tertiary", "destructive"] as const;
 
@@ -182,8 +182,8 @@ function DesignSystem() {
 
         <Section title="SusAF diagram">
           <p className="text-xs text-ink-subtle">
-            The Sustainability Awareness Framework. Pass a list of effects, each with a dimension, an order of effect, and
-            optional <code>leadsTo</code> ids that draw arrows between them. Clicking a card selects it, and{" "}
+            The Sustainability Awareness Framework. Pass effects keyed by id with <code>defineSusafEffects</code>, each with a
+            dimension, an order of effect, and optional <code>leadsTo</code> ids that draw arrows between them. Clicking a card selects it, and{" "}
             <code>SusafEffectDetails</code> shows its <code>description</code>. Keep the selection in the URL.
           </p>
           <div className="flex flex-col gap-6 lg:flex-row lg:items-start">
