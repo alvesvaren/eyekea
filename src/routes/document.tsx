@@ -96,6 +96,15 @@ const SUSAF_EFFECTS: SusafEffect[] = [
   },
 ];
 
+const AI_TOKEN_USAGE = [
+  { label: "Model calls", tokens: "274" },
+  { label: "Output tokens", tokens: "196,415" },
+  { label: "Input tokens written to cache", tokens: "925,409" },
+  { label: "Input tokens read from cache", tokens: "20,856,158" },
+  { label: "Input tokens without cache", tokens: "548" },
+  { label: "Total", tokens: "≈ 22 million" },
+];
+
 function Document() {
   const { effect } = Route.useSearch();
   const navigate = Route.useNavigate();
@@ -193,6 +202,37 @@ function Document() {
         </Section>
 
         {/* Section 5 */}
+        <Section title="AI Usage">
+          <p className="max-w-2xl text-ink-subtle">
+            We have used Claude Code to help build Eyekea, mostly running the model Claude Opus 5.5.
+            The numbers below come from the Claude Code session logs, from 1 to 8 October 2026.
+          </p>
+
+          <p className="text-lg font-bold">Environmental impact</p>
+          <table className="max-w-md text-sm">
+            <tbody>
+              {AI_TOKEN_USAGE.map(({ label, tokens }) => (
+                <tr key={label} className="border-b border-line">
+                  <td className="py-1 text-ink-subtle">{label}</td>
+                  <td className="py-1 text-right tabular-nums">{tokens}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="max-w-2xl text-ink-subtle">
+            Anthropic does not publish per token energy figures, so we used estimations from published per-token figures for Claude Opus.
+            These give about 1.0 to 1.7 kWh, or 1.1 to 2 kWh with realistic data center overheads.
+            At a grid intensity of 0.4 kg CO₂e/kWh, that is about 0.4 to 0.8 kg CO₂e, roughly the same as running a dishwasher once or twice.
+          </p>
+          <p className="max-w-2xl text-ink-subtle">
+            Cache reads make up 95% of the tokens we used, because the agent resends the project context on every call.
+            Each one costs little, but together they use as much energy as the generated output, or more.
+            These are order-of-magnitude estimates, not measurements, and they leave out the energy used to train the model.
+            Opus 5.5 may use more energy per token than the older models the figures are based on, however it should be in the same order of magnitude.
+          </p>
+        </Section>
+
+        {/* Section 6 */}
         <Section title="Research and Sources">
           
           <p className="text-lg font-bold">Documentation</p>
@@ -213,6 +253,14 @@ function Document() {
           </Reference>
           
           <Reference link="https://zenodo.org/records/7342575" reference="Betz S., Deuboc L., Penzenstadler B., Porras J., Chitchyan R.,\n Seyff N., Venters C. C., Brooks I. (2022, November 21)">SusAF Workbook 6.0</Reference>
+
+          <Reference link="https://simonpcouch.com/blog/2026-01-20-cc-impact/" reference="Couch S. (2026, January 20)">
+            Electricity use of AI coding agents
+          </Reference>
+
+          <Reference link="https://www.theclimatebrink.com/p/the-real-energy-use-of-agentic-ai" reference="Hausfather Z. (2026). The Climate Brink">
+            The real energy use of agentic AI
+          </Reference>
 
           <p className="text-lg font-bold">Other</p>
           {/* Source 1 */}

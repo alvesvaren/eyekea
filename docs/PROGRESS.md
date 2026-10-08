@@ -18,6 +18,7 @@ Update this file when you start or finish something. Put your name next to items
 - [x] Risk colour scale (`risk-*` tokens) that works for colour-blind viewers, with "not enough data" drawn as a hollow ring or hatched area
 - [x] Status faces (smile, flat, frown, question mark) on the map, graph, and legend, so risk reads without colour
 - [x] SusAF diagram component, driven by a list of effects, on the document page and the design page. Click an effect to read its description; the selection is in the URL (`?effect=`)
+- [x] AI Usage section on the document page, with token use and estimated environmental impact from the Claude Code logs
 
 ## Next
 
