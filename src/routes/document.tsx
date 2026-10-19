@@ -100,8 +100,9 @@ const SUSAF_EFFECTS = defineSusafEffects({
     label: "Audits are allocated where needed",
     description:
       "Since EYEKEA estimates a risk level of each location, IKEA can focus their efforts and resources where it is needed most. For example, to send audits.",
+    leadsTo: ["economic-efficiency"]
   },
-  "efficiency": {
+  "economic-efficiency": {
     dimension: "economic",
     order: "structural",
     label: "Money invested in sustainability research",
