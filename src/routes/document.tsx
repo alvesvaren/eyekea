@@ -23,7 +23,7 @@ const SUSAF_EFFECTS = defineSusafEffects({
   // ───────── Individual ─────────
   "see-trouble": {
     dimension: "individual",
-    order: "immediate",
+    order: "enabling",
     label: "Managers see troublesome locations",
     description:
       "EYEKEA helps the managers of IKEA to map the supply chain, and sort by different risk levels. This way, they know where to look first.",
