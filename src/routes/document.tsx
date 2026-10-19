@@ -184,8 +184,7 @@ function Document() {
         <DemoButton></DemoButton>
 
         {/* Section 1 */}
-        <Section title="About the team">
-          <p className="text-lg font-bold">Abstract(Feasibility) </p>
+        <Section title="Abstract">
           <p className="max-w-2xl text-ink-subtle">
             EYEKEA is a tool that visualizes the IKEA supply chain.
             It uses static data from a JSON file, but could be connected to their internal APIs.
