@@ -182,8 +182,6 @@ function Document() {
           <p className="max-w-2xl text-ink-subtle">TEK830 - Group 9</p>
         </header>
 
-        <DemoButton></DemoButton>
-
         {/* Section 1 */}
         <Section title="Abstract">
           <p className="max-w-2xl text-ink-subtle">
@@ -192,6 +190,7 @@ function Document() {
             By having a threshold for the varying metrics, EYEKEA can flag troublesome areas.
             The demo only shows locations in Germany.
           </p>
+          <DemoButton></DemoButton>
         </Section>
 
         {/* Section 2 */}
