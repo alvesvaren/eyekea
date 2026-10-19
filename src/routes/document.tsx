@@ -171,7 +171,7 @@ function Document() {
         {/* Section 1 */}
         <Section title="About the team">
           <p className="text-lg font-bold">Contact</p>
-          <div className='grid grid-cols-3 space-y-4'>
+          <div className="grid gap-x-6 gap-y-4 sm:grid-cols-2 lg:grid-cols-3">
             {Object.entries(team).map(([index, member]) => (
               <div key={index} className="flex flex-col">
                 <h3 className="text-md font-bold text-ink-subtle">{member.name}</h3>

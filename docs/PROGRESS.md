@@ -20,6 +20,7 @@ Update this file when you start or finish something. Put your name next to items
 - [x] SusAF diagram component, driven by a list of effects, on the document page and the design page. Click an effect to read its description; the selection is in the URL (`?effect=`)
 - [x] AI Usage section on the document page: a summary of the scaffolding session in accordions, and token use with estimated environmental impact from the Claude Code logs
 - [x] Accordion component on native `details`, on the design page
+- [x] Mobile layout: the map sits above the details panel, the filters scroll sideways, the header nav folds into a menu, and the graph scrolls inside its box. Opening a site scrolls the panel back to the top
 
 ## Next
 

@@ -8,7 +8,7 @@ export function TabList({ className, ...props }: ComponentProps<"nav">) {
 
 /** Skapa tab styles. Pass to a router `<Link className>` so each tab is a real URL. */
 export const tabVariants = cva(
-  "-mb-px inline-flex h-14 min-w-32 items-center justify-center border-b-2 px-6 text-base font-bold transition-colors",
+  "-mb-px inline-flex h-12 min-w-24 items-center justify-center border-b-2 px-4 text-base font-bold transition-colors md:h-14 md:min-w-32 md:px-6",
   {
     variants: {
       selected: {
