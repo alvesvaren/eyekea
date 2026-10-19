@@ -74,7 +74,7 @@ const SUSAF_EFFECTS = defineSusafEffects({
     order: "enabling",
     label: "Discover environmental risks",
     description:
-      "EYEKEA will enable IKEA to discover possible environmental risks by measuring resource usage, enabling IKEA to request remedies or change suppliers. (materials and resources, waste pollution)",
+      "EYEKEA will enable IKEA to discover possible environmental risks by measuring resource usage, enabling IKEA to request remedies or change suppliers.",
     leadsTo: ["market-access"],
   },
   "overview": {
@@ -82,7 +82,7 @@ const SUSAF_EFFECTS = defineSusafEffects({
     order: "enabling",
     label: "Better overview of the supply chain",
     description:
-      "While EYEKEA is specialized towards monitoring individual locations in the supply chain, the overview will simplify viewing the supply chain and provide insights to improve the overall logistics of the supply chain to increase efficiency. (logistics)",
+      "While EYEKEA is specialized towards monitoring individual locations in the supply chain, the overview will simplify viewing the supply chain and provide insights to improve the overall logistics of the supply chain to increase efficiency.",
     leadsTo: ["market-access"],
   },
 
@@ -92,7 +92,7 @@ const SUSAF_EFFECTS = defineSusafEffects({
     order: "enabling",
     label: "Access to a larger market",
     description:
-      "Aligning with internationally recognised principles can allow a company to access a larger market. (supply chains, value)",
+      "Aligning with internationally recognised principles can allow a company to access a larger market.",
   },
   "audit-allocation": {
     dimension: "economic",
@@ -100,6 +100,13 @@ const SUSAF_EFFECTS = defineSusafEffects({
     label: "Audits are allocated where needed",
     description:
       "Since EYEKEA estimates a risk level of each location, IKEA can focus their efforts and resources where it is needed most. For example, to send audits.",
+  },
+  "efficiency": {
+    dimension: "economic",
+    order: "structural",
+    label: "Money invested in sustainability research",
+    description:
+      "If EYEKEA proves to be efficient, and IKEA can save money and resources by focusing their efforts where it is needed - then maybe others will follow. More money is spent in sustainability research, and similar tools are implemented in other global supply chains.",
   },
 
   // ───────── Technical ─────────
@@ -116,7 +123,7 @@ const SUSAF_EFFECTS = defineSusafEffects({
     order: "enabling",
     label: "Adaptable to new report formats",
     description:
-      "To maintain EYEKEA as standards for public reports change will require maintenance. However, while translating public reports into our internal format will require updates to the software, it additionally means that EYEKEA can be adapted to extend to any formats that provide relevant data. (usability, adaptability)",
+      "To maintain EYEKEA as standards for public reports change will require maintenance. However, while translating public reports into our internal format will require updates to the software, it additionally means that EYEKEA can be adapted to extend to any formats that provide relevant data.",
   },
 });
 
@@ -178,15 +185,13 @@ function Document() {
 
         {/* Section 1 */}
         <Section title="About the team">
-          <p className="text-lg font-bold">Contact</p>
-          <div className='grid grid-cols-3 space-y-4'>
-            {Object.entries(team).map(([index, member]) => (
-              <div key={index} className="flex flex-col">
-                <h3 className="text-md font-bold text-ink-subtle">{member.name}</h3>
-                <MailToLink>{member.mail}</MailToLink>
-              </div>
-            ))}
-          </div>
+          <p className="text-lg font-bold">Abstract(Feasibility) </p>
+          <p className="max-w-2xl text-ink-subtle">
+            EYEKEA is a tool that visualizes the IKEA supply chain.
+            It uses static data from a JSON file, but could be connected to their internal APIs.
+            By having a threshold for the varying metrics, EYEKEA can flag troublesome areas.
+            The demo only shows locations in Germany.
+          </p>
         </Section>
 
         {/* Section 2 */}
@@ -304,6 +309,20 @@ function Document() {
         </Section>
 
         {/* Section 6 */}
+        <Section title="About the team">
+          <p className="text-lg font-bold">Contact</p>
+          <div className='grid grid-cols-3 space-y-4'>
+            {Object.entries(team).map(([index, member]) => (
+              <div key={index} className="flex flex-col">
+                <h3 className="text-md font-bold text-ink-subtle">{member.name}</h3>
+                <MailToLink>{member.mail}</MailToLink>
+              </div>
+            ))}
+          </div>
+        </Section>
+
+
+        {/* Section 7 */}
         <Section title="Research and Sources">
 
           <p className="text-lg font-bold">Documentation</p>
