@@ -206,7 +206,7 @@ function Document() {
             The initial sketch of the EYEKEA Web UI.
           </p>
           <img
-            src="https://cdn.discordapp.com/attachments/1365745673734983720/1557468437565931632/ALKuztZMO5Ir9cTebMTE72qSyxdg2d_8He4NGNpujE4tanI25AqnmBpSGeGHUcmLUvZY6NSw5I2uQfs2XEDUJmiFyMRcB3o8IjTwUbU-QSWz4xDLBsfurByi-jGH2mDVj03JBDXj0Wg3KJvWEQ4lmIK9a2l_magkIxyHpd1FUVtv5Qs2048.png?backend=b2&ex=6ac7e903&is=6ac69783&hm=7845cf642912949401e0e5979a81864403398b8b10082524b6d5a8b17be00e4c&"
+            src="/sketch.png"
             style={{ height: 3 * 120, width: 4 * 120 }}
             alt="new"
           />
