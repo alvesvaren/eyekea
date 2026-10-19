@@ -65,55 +65,58 @@ export default function SupplyChainGraph({ sites, links, visibleIds, selectedId 
   });
 
   return (
-    <div className="absolute inset-0 overflow-hidden bg-surface">
-      {headers.map(({ label, x }) => (
-        <span
-          key={label}
-          className="absolute top-3 -translate-x-1/2 text-xs font-bold text-ink-muted"
-          style={{ left: `${100 - x}%` }}
-        >
-          {label}
-        </span>
-      ))}
-
-      <svg className="absolute inset-0 size-full" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden>
-        {edges.map(({ key, path, dimmed, selected }) => (
-          <path
-            key={key}
-            d={path}
-            fill="none"
-            vectorEffect="non-scaling-stroke"
-            className={clsx(selected ? "stroke-ink" : "stroke-line-strong", dimmed && "opacity-20")}
-            strokeWidth={selected ? 2.5 : 1.25}
-          />
-        ))}
-      </svg>
-
-      {sites.map(({ id, name, assessment }) => {
-        const position = positions.get(id);
-        if (!position) return null;
-        return (
-          <Link
-            key={id}
-            to="/sites/$siteId"
-            params={{ siteId: id }}
-            title={name}
-            className={clsx(
-              "absolute flex max-w-36 -translate-x-1/2 -translate-y-1/2 items-center gap-1.5 rounded-full border bg-surface px-2 py-1 text-xs font-bold shadow-sm transition hover:z-10 hover:border-ink",
-              id === selectedId ? "z-10 border-ink ring-2 ring-ink" : "border-line",
-              !visibleIds.has(id) && "opacity-25",
-            )}
-            style={{ left: `${100 - position.x}%`, top: `${position.y}%` }}
+    // The graph keeps a minimum size and scrolls inside its box, so columns do not pile up on small screens.
+    <div className="absolute inset-0 overflow-auto bg-surface">
+      <div className="relative size-full min-h-120 min-w-200">
+        {headers.map(({ label, x }) => (
+          <span
+            key={label}
+            className="absolute top-3 -translate-x-1/2 text-xs font-bold text-ink-muted"
+            style={{ left: `${100 - x}%` }}
           >
-            <StatusFace tone={assessment.status} />
-            <span className="truncate">{name.replace(" GmbH", "")
-              .split(" ")
-              .map(word => word.length > 4 ?
-                word.substring(0, 3) + "." : word)
-              .join(" ")}</span>
-          </Link>
-        );
-      })}
+            {label}
+          </span>
+        ))}
+
+        <svg className="absolute inset-0 size-full" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden>
+          {edges.map(({ key, path, dimmed, selected }) => (
+            <path
+              key={key}
+              d={path}
+              fill="none"
+              vectorEffect="non-scaling-stroke"
+              className={clsx(selected ? "stroke-ink" : "stroke-line-strong", dimmed && "opacity-20")}
+              strokeWidth={selected ? 2.5 : 1.25}
+            />
+          ))}
+        </svg>
+
+        {sites.map(({ id, name, assessment }) => {
+          const position = positions.get(id);
+          if (!position) return null;
+          return (
+            <Link
+              key={id}
+              to="/sites/$siteId"
+              params={{ siteId: id }}
+              title={name}
+              className={clsx(
+                "absolute flex max-w-36 -translate-x-1/2 -translate-y-1/2 items-center gap-1.5 rounded-full border bg-surface px-2 py-1 text-xs font-bold shadow-sm transition hover:z-10 hover:border-ink",
+                id === selectedId ? "z-10 border-ink ring-2 ring-ink" : "border-line",
+                !visibleIds.has(id) && "opacity-25",
+              )}
+              style={{ left: `${100 - position.x}%`, top: `${position.y}%` }}
+            >
+              <StatusFace tone={assessment.status} />
+              <span className="truncate">{name.replace(" GmbH", "")
+                .split(" ")
+                .map(word => word.length > 4 ?
+                  word.substring(0, 3) + "." : word)
+                .join(" ")}</span>
+            </Link>
+          );
+        })}
+      </div>
     </div>
   );
 }
