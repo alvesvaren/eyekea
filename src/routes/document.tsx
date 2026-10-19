@@ -38,7 +38,7 @@ const SUSAF_EFFECTS = defineSusafEffects({
   // ───────── Social ─────────
   "see-risk": {
     dimension: "social",
-    order: "immediate",
+    order: "enabling",
     label: "Reinforces stakeholder relationships",
     description:
       "By using EYEKEA you can reinforce stakeholder relationships by showing your commitment to corporate social responsibility. This strengthens the trust and sense of community.",
@@ -61,6 +61,14 @@ const SUSAF_EFFECTS = defineSusafEffects({
   },
 
   // ───────── Environmental ─────────
+  
+  "development-cost" : {
+    dimension: "environmental",
+    order: "immediate",
+    label: "Impact of AI use",
+    description: "AI was used in the development of the prototype. The direct power consumption of writing code for our project is negligible. However, the models hold a lot of embodied emission and the societal impact of using AI can be discussed. ",
+    leadsTo: [],
+  },
   "discover-env-risks": {
     dimension: "environmental",
     order: "enabling",
@@ -97,10 +105,10 @@ const SUSAF_EFFECTS = defineSusafEffects({
   // ───────── Technical ─────────
   "scalable-network": {
     dimension: "technical",
-    order: "immediate",
+    order: "enabling",
     label: "Scalable network of reports and audits",
     description:
-      "EYEKEA has the capability to expand into a massive network of reports, articles and audits, reducing audit fatigue and lowering costs while creating a reliable database for the future. (scalability)",
+      "EYEKEA has the capability to expand into a massive network of reports, articles and audits, reducing audit fatigue and lowering costs while creating a reliable database for the future.",
     leadsTo: ["overview", "adaptable-formats"],
   },
   "adaptable-formats": {
