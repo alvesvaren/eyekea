@@ -23,7 +23,7 @@ const SUSAF_EFFECTS = defineSusafEffects({
   // ───────── Individual ─────────
   "see-trouble": {
     dimension: "individual",
-    order: "immediate",
+    order: "enabling",
     label: "Managers see troublesome locations",
     description:
       "EYEKEA helps the managers of IKEA to map the supply chain, and sort by different risk levels. This way, they know where to look first.",
@@ -38,7 +38,7 @@ const SUSAF_EFFECTS = defineSusafEffects({
   // ───────── Social ─────────
   "see-risk": {
     dimension: "social",
-    order: "immediate",
+    order: "enabling",
     label: "Reinforces stakeholder relationships",
     description:
       "By using EYEKEA you can reinforce stakeholder relationships by showing your commitment to corporate social responsibility. This strengthens the trust and sense of community.",
@@ -61,12 +61,20 @@ const SUSAF_EFFECTS = defineSusafEffects({
   },
 
   // ───────── Environmental ─────────
+  
+  "development-cost" : {
+    dimension: "environmental",
+    order: "immediate",
+    label: "Impact of AI use",
+    description: "AI was used in the development of the prototype. The direct power consumption of writing code for our project is negligible. However, the models hold a lot of embodied emission and the societal impact of using AI can be discussed. ",
+    leadsTo: [],
+  },
   "discover-env-risks": {
     dimension: "environmental",
     order: "enabling",
     label: "Discover environmental risks",
     description:
-      "EYEKEA will enable IKEA to discover possible environmental risks by measuring resource usage, enabling IKEA to request remedies or change suppliers. (materials and resources, waste pollution)",
+      "EYEKEA will enable IKEA to discover possible environmental risks by measuring resource usage, enabling IKEA to request remedies or change suppliers.",
     leadsTo: ["market-access"],
   },
   "overview": {
@@ -74,7 +82,7 @@ const SUSAF_EFFECTS = defineSusafEffects({
     order: "enabling",
     label: "Better overview of the supply chain",
     description:
-      "While EYEKEA is specialized towards monitoring individual locations in the supply chain, the overview will simplify viewing the supply chain and provide insights to improve the overall logistics of the supply chain to increase efficiency. (logistics)",
+      "While EYEKEA is specialized towards monitoring individual locations in the supply chain, the overview will simplify viewing the supply chain and provide insights to improve the overall logistics of the supply chain to increase efficiency.",
     leadsTo: ["market-access"],
   },
 
@@ -84,7 +92,7 @@ const SUSAF_EFFECTS = defineSusafEffects({
     order: "enabling",
     label: "Access to a larger market",
     description:
-      "Aligning with internationally recognised principles can allow a company to access a larger market. (supply chains, value)",
+      "Aligning with internationally recognised principles can allow a company to access a larger market.",
   },
   "audit-allocation": {
     dimension: "economic",
@@ -92,15 +100,23 @@ const SUSAF_EFFECTS = defineSusafEffects({
     label: "Audits are allocated where needed",
     description:
       "Since EYEKEA estimates a risk level of each location, IKEA can focus their efforts and resources where it is needed most. For example, to send audits.",
+    leadsTo: ["economic-efficiency"]
+  },
+  "economic-efficiency": {
+    dimension: "economic",
+    order: "structural",
+    label: "Money invested in sustainability research",
+    description:
+      "If EYEKEA proves to be efficient, and IKEA can save money and resources by focusing their efforts where it is needed - then maybe others will follow. More money is spent in sustainability research, and similar tools are implemented in other global supply chains.",
   },
 
   // ───────── Technical ─────────
   "scalable-network": {
     dimension: "technical",
-    order: "immediate",
+    order: "enabling",
     label: "Scalable network of reports and audits",
     description:
-      "EYEKEA has the capability to expand into a massive network of reports, articles and audits, reducing audit fatigue and lowering costs while creating a reliable database for the future. (scalability)",
+      "EYEKEA has the capability to expand into a massive network of reports, articles and audits, reducing audit fatigue and lowering costs while creating a reliable database for the future.",
     leadsTo: ["overview", "adaptable-formats"],
   },
   "adaptable-formats": {
@@ -108,7 +124,7 @@ const SUSAF_EFFECTS = defineSusafEffects({
     order: "enabling",
     label: "Adaptable to new report formats",
     description:
-      "To maintain EYEKEA as standards for public reports change will require maintenance. However, while translating public reports into our internal format will require updates to the software, it additionally means that EYEKEA can be adapted to extend to any formats that provide relevant data. (usability, adaptability)",
+      "To maintain EYEKEA as standards for public reports change will require maintenance. However, while translating public reports into our internal format will require updates to the software, it additionally means that EYEKEA can be adapted to extend to any formats that provide relevant data.",
   },
 });
 
@@ -166,19 +182,15 @@ function Document() {
           <p className="max-w-2xl text-ink-subtle">TEK830 - Group 9</p>
         </header>
 
-        <DemoButton></DemoButton>
-
         {/* Section 1 */}
-        <Section title="About the team">
-          <p className="text-lg font-bold">Contact</p>
-          <div className="grid gap-x-6 gap-y-4 sm:grid-cols-2 lg:grid-cols-3">
-            {Object.entries(team).map(([index, member]) => (
-              <div key={index} className="flex flex-col">
-                <h3 className="text-md font-bold text-ink-subtle">{member.name}</h3>
-                <MailToLink>{member.mail}</MailToLink>
-              </div>
-            ))}
-          </div>
+        <Section title="Abstract">
+          <p className="max-w-2xl text-ink-subtle">
+            EYEKEA is a tool that visualizes the IKEA supply chain.
+            It uses static data from a JSON file, but could be connected to their internal APIs.
+            By having a threshold for the varying metrics, EYEKEA can flag troublesome areas.
+            The demo only shows locations in Germany.
+          </p>
+          <DemoButton></DemoButton>
         </Section>
 
         {/* Section 2 */}
@@ -296,6 +308,20 @@ function Document() {
         </Section>
 
         {/* Section 6 */}
+        <Section title="About the team">
+          <p className="text-lg font-bold">Contact</p>
+          <div className="grid gap-x-6 gap-y-4 sm:grid-cols-2 lg:grid-cols-3">
+            {Object.entries(team).map(([index, member]) => (
+              <div key={index} className="flex flex-col">
+                <h3 className="text-md font-bold text-ink-subtle">{member.name}</h3>
+                <MailToLink>{member.mail}</MailToLink>
+              </div>
+            ))}
+          </div>
+        </Section>
+
+
+        {/* Section 7 */}
         <Section title="Research and Sources">
 
           <p className="text-lg font-bold">Documentation</p>
